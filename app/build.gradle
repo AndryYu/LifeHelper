@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
-apply plugin: 'realm-android'
+apply plugin: 'com.neenbedankt.android-apt'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -35,16 +35,7 @@ dependencies {
     compile "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
     compile "com.android.support:design:$rootProject.ext.supportLibraryVersion"
     testCompile 'junit:junit:4.12'
-    // rxjava
-    compile 'io.reactivex:rxandroid:1.2.1'
-    compile 'io.reactivex:rxjava:1.2.1'
-    // RxLifecycle
-    compile 'com.trello:rxlifecycle:+'
-    compile 'com.trello:rxlifecycle-components:+'
-    // retrofit2 + okhttp3
-    compile 'com.squareup.retrofit2:retrofit:2.1.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
-    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+
     // 图片加载库
     compile 'com.github.bumptech.glide:glide:3.7.0'
     // gson库
@@ -52,5 +43,10 @@ dependencies {
     // butterkinfe库
     compile 'com.jakewharton:butterknife:8.4.0'
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
+    // dagger2
+    compile 'com.google.dagger:dagger:2.7'
+    apt 'com.google.dagger:dagger-compiler:2.7'
+    //字体
+    compile 'uk.co.chrisjenx:calligraphy:2.2.0'
     compile project(':mdsdk')
 }
