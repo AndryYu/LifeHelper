@@ -3,33 +3,43 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_world_eyes"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Import"/>
+            android:title="World Eyes"/>
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_life_note"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery"/>
+            android:title="Life Note"/>
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_music"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow"/>
+            android:title="Music"/>
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/nav_book"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Tools"/>
+            android:title="Book"/>
+
+        <item
+            android:id="@+id/nav_ganhuo"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Gan Huo"/>
     </group>
 
     <item android:title="Communicate">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share"/>
+                android:id="@+id/nav_theme"
+                android:title="change theme"
+                android:icon="@drawable/ic_brightness_6_black_24dp"/>
+
             <item
-                android:id="@+id/nav_send"
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Settings"/>
+            <item
+                android:id="@+id/nav_about"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Send"/>
+                android:title="About"/>
         </menu>
     </item>
 

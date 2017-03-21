@@ -3,9 +3,10 @@ package com.android.andryyu.lifehelper;
 import android.app.Application;
 import android.content.Context;
 
-import com.android.andryyu.lifehelper.dagger.components.DaggerNetComponent;
-import com.android.andryyu.lifehelper.dagger.components.NetComponent;
-import com.android.andryyu.lifehelper.dagger.modules.NetModule;
+import com.android.andryyu.lifehelper.di.components.DaggerNetComponent;
+import com.android.andryyu.lifehelper.di.components.NetComponent;
+import com.android.andryyu.lifehelper.di.modules.NetModule;
+import com.android.andryyu.lifehelper.utils.exception.AppCrashHandler;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
@@ -23,6 +24,9 @@ public class BaseApplication extends Application {
         return context;
     }
 
+    public static BaseApplication get(Context context){
+        return (BaseApplication)context.getApplicationContext();
+    }
     @Override
     public void onCreate() {
         super.onCreate();
@@ -30,6 +34,7 @@ public class BaseApplication extends Application {
 
         initTypeFace();
         initNet();
+        AppCrashHandler.getInstance().setCrashHandler(this);
     }
 
     /**
@@ -51,5 +56,10 @@ public class BaseApplication extends Application {
         netComponent = DaggerNetComponent.builder()
                 .netModule(new NetModule())
                 .build();
+    }
+
+
+    public NetComponent getNetComponent(){
+        return netComponent;
     }
 }

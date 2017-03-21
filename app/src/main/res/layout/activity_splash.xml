@@ -1,0 +1,20 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="?attr/colorPrimary"
+              android:orientation="vertical">
+
+    <com.android.andryyu.lifehelper.widget.particleview.ParticleView
+        android:id="@+id/pv_logo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:pv_background_color="?attr/colorPrimary"
+        app:pv_host_text="LifeHelper"
+        app:pv_host_text_anim_time="400"
+        app:pv_particle_text="Home"
+        app:pv_particle_text_size="16sp"
+        app:pv_spread_anim_time="200"
+        app:pv_text_anim_time="600"
+        app:pv_text_color="#FFF" />
+</LinearLayout>

@@ -1,1 +1,1 @@
-include ':app', ':mdsdk', ':vitamio2'
+include ':app', ':vitamio2'

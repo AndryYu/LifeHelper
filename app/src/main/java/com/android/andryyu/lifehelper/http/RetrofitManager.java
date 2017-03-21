@@ -1,8 +1,8 @@
 package com.android.andryyu.lifehelper.http;
 
 import com.android.andryyu.lifehelper.BaseApplication;
-import com.android.andryyu.mdsdk.utils.FileUtil;
-import com.android.andryyu.mdsdk.utils.NetUtils;
+import com.android.andryyu.lifehelper.utils.FileUtil;
+import com.android.andryyu.lifehelper.utils.NetUtil;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -65,13 +65,13 @@ public class RetrofitManager {
             @Override
             public Response intercept(Chain chain) throws IOException {
                 Request request = chain.request();
-                if (!NetUtils.isNetworkReachable(BaseApplication.getContext())) {
+                if (!NetUtil.isNetworkReachable(BaseApplication.getContext())) {
                     request = request.newBuilder()
                             .cacheControl(CacheControl.FORCE_CACHE)
                             .build();
                 }
                 Response response = chain.proceed(request);
-                if (NetUtils.isNetworkReachable(BaseApplication.getContext())) {
+                if (NetUtil.isNetworkReachable(BaseApplication.getContext())) {
                     int maxAge = 0;
                     // 有网络时 设置缓存超时时间0个小时
                     response.newBuilder()
