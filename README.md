@@ -8,6 +8,12 @@
 
 
 ## Preview
+<img width="80" height="150" src="/screen_shot/screen_shot01.png"/>
+<img width="80" height="150" src="/screen_shot/screen_shot02.png"/>
+<img width="80" height="150" src="/screen_shot/screen_shot03.png"/>
+<img width="80" height="150" src="/screen_shot/screen_shot04.png"/>
+<img width="80" height="150" src="/screen_shot/screen_shot05.png"/>
+<img width="80" height="150" src="/screen_shot/screen_shot06.png"/>
 ![NavigationView](/screen_shot/screen_shot01.png)
 ![OpenEyesList](/screen_shot/screen_shot02.png)
 ![OpenEyesDetail](/screen_shot/screen_shot03.png)
