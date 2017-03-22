@@ -5,6 +5,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 
+import com.android.andryyu.lifehelper.utils.FileUtil;
 import com.android.andryyu.lifehelper.utils.ToastUtil;
 
 import java.io.PrintWriter;
@@ -100,8 +101,9 @@ public class AppCrashHandler implements Thread.UncaughtExceptionHandler {
             builder.append(key).append("=").append(value + "\n");
         }
         builder.append(obtainExceptionInfo(throwable));
-
+        FileUtil.writeLogCrashContent(context, builder.toString());
         ToastUtil.showInThread(context, String.format("%s\n%s", "很抱歉，程序遭遇异常，即将退出！", builder.toString()));
+
     }
 
 

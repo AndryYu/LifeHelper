@@ -4,6 +4,7 @@ import com.android.andryyu.lifehelper.data.entity.Daily;
 import com.android.andryyu.lifehelper.data.entity.HomePicEntity;
 import com.android.andryyu.lifehelper.data.entity.Item;
 import com.android.andryyu.lifehelper.data.entity.Result;
+import com.android.andryyu.lifehelper.data.entity.Story;
 import com.android.andryyu.lifehelper.data.entity.WeatherAPI;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.Url;
 import rx.Observable;
 
 /**
@@ -24,16 +26,18 @@ public interface ApiService {
     Observable<WeatherAPI> mWeatherAPI(@Query("city") String city, @Query("key") String key);
 
     /**  获取OpenEyes每日精选 */
-    @GET("http://baobab.wandoujia.com/api/v2/feed?num=2&udid=26868b32e808498db32fd51fb422d00175e179df&vc=83")
-    Observable<HomePicEntity>  OpenEyesVideo();
+    @GET
+    Observable<HomePicEntity>  OpenEyesVideo(@Url String url);
 
     /**  获取知乎日报*/
-    @GET("news/latest")
+    @GET("http://news-at.zhihu.com/api/4/news/latest")
     Observable<Daily> getLatest();
 
-    @GET("stories/before/{datetime}?client=0")
+    @GET("http://news-at.zhihu.com/api/4/stories/before/{datetime}?client=0")
     Observable<Daily> getBefore(@Path("datetime") int datetime);
 
+    @GET("http://news-at.zhihu.com/api/4/story/{story_id}")
+    Observable<Story> getStory(@Path("story_id") int storyId);
 
     /**
      * <p>单读应用列表</p>

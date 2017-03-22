@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Story  implements Parcelable {
+public class Story  extends BaseEntity implements Parcelable {
 
     public int id;
 

@@ -2,6 +2,9 @@ package com.android.andryyu.lifehelper.mvp.view;
 
 import com.android.andryyu.lifehelper.base.BasePresenter;
 import com.android.andryyu.lifehelper.base.BaseView;
+import com.android.andryyu.lifehelper.data.entity.HomePicEntity;
+
+import java.util.List;
 
 /**
  * Created by yufei on 2017/3/21.
@@ -11,6 +14,17 @@ public class OpenEyesContract {
 
     public interface View extends BaseView<Presenter> {
 
+        /**
+         * <p>doOnTerminate</p>
+         * @Description:    监听
+         */
+        void doOnTerminate();
+
+        void onNextPagerUrl(String url);
+
+        void onNotify(List<HomePicEntity.IssueListEntity.ItemListEntity> lists);
+
+        void onError(Throwable e);
     }
 
     public interface Presenter extends BasePresenter {
@@ -18,6 +32,6 @@ public class OpenEyesContract {
          * <p>loadOpenEyesInfo</p>
          * @Description:加载OpenEyes列表
          */
-        void  loadOpenEyesInfo(String city);
+        void  loadOpenEyesInfo(String url);
     }
 }

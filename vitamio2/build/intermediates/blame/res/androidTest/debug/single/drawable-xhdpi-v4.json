@@ -12,12 +12,12 @@
         "source": "F:\\WorkSpace\\Git\\LifeHelper\\vitamio2\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\ic_launcher.png"
     },
     {
-        "merged": "F:\\WorkSpace\\Git\\LifeHelper\\vitamio2\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\scrubber_primary_holo.9.png",
-        "source": "F:\\WorkSpace\\Git\\LifeHelper\\vitamio2\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\scrubber_primary_holo.9.png"
-    },
-    {
         "merged": "F:\\WorkSpace\\Git\\LifeHelper\\vitamio2\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\mediacontroller_play.png",
         "source": "F:\\WorkSpace\\Git\\LifeHelper\\vitamio2\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\mediacontroller_play.png"
+    },
+    {
+        "merged": "F:\\WorkSpace\\Git\\LifeHelper\\vitamio2\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\scrubber_primary_holo.9.png",
+        "source": "F:\\WorkSpace\\Git\\LifeHelper\\vitamio2\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\scrubber_primary_holo.9.png"
     },
     {
         "merged": "F:\\WorkSpace\\Git\\LifeHelper\\vitamio2\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\scrubber_control_focused_holo.png",

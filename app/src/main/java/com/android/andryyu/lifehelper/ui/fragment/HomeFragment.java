@@ -57,10 +57,10 @@ public class HomeFragment extends BaseFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mTitleList.add("开眼视频");
-        mTitleList.add("单读");
+       // mTitleList.add("单读");
         mTitleList.add("知乎日报");
         mFragments.add(new OpenEyesFragment());
-        mFragments.add(new OwnspaceFragment());
+        //mFragments.add(new OwnspaceFragment());
         mFragments.add(new ZhiHuFragment());
         MyFragmentPagerAdapter myAdapter = new MyFragmentPagerAdapter(getChildFragmentManager(), mFragments, mTitleList);
         mVpHome.setAdapter(myAdapter);

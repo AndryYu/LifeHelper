@@ -11,4 +11,9 @@
     <color name="colorTheme">#ffce3d3a</color>
     <!--水波纹或5.0以下选择器颜色-->
     <color name="tabBackground">#777D7D7D</color>
+
+    <color name="gray_light">#aaaaaa</color>
+    <color name="gray_dark">#333333</color>
+    <color name="selecotr_color">#4D969696</color>
+    <color name="window_color">#f9f9f9</color>
 </resources>

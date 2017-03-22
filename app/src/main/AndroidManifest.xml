@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.android.andryyu.lifehelper">
 
-
     <!--用于进行网络定位-->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <!--用于访问GPS定位-->
@@ -45,14 +44,27 @@
         <activity
             android:name=".ui.act.WeatherActivity"
             android:theme="@style/AppTheme"/>
+        <activity android:name=".ui.act.ShowVideoActivity"
+                  android:theme="@style/AppTheme.NoActionBar"
+                  android:configChanges="orientation|keyboardHidden|screenSize"
+                  android:screenOrientation="sensorLandscape"/>
 
+        <activity android:name=".ui.act.VideoDetailActivity"
+                  android:theme="@style/AppTheme"/>
+
+        <activity android:name=".ui.act.ZhiHuStoryActivity"/>
+
+        <activity
+            android:name="io.vov.vitamio.activity.InitActivity"
+            android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="stateAlwaysHidden" />
 
         <service android:name="com.amap.api.location.APSService"/>
 
         <meta-data android:name="com.amap.api.v2.apikey"
                    android:value="66270ff5616ddf89edf4c88e7c13871f"/>
-
-
     </application>
 
 </manifest>

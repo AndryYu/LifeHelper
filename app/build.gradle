@@ -73,4 +73,5 @@ dependencies {
     apt 'com.google.dagger:dagger-compiler:2.7'
     provided 'org.glassfish:javax.annotation:10.0-b28'
     compile 'in.srain.cube:ultra-ptr:1.0.11'
+    compile "com.mcxiaoke.viewpagerindicator:library:2.4.1"
 }

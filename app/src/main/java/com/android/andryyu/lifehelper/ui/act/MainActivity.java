@@ -1,5 +1,6 @@
 package com.android.andryyu.lifehelper.ui.act;
 
+import android.Manifest;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -18,6 +19,7 @@ import android.widget.FrameLayout;
 
 import com.android.andryyu.lifehelper.R;
 import com.android.andryyu.lifehelper.base.BaseFragment;
+import com.android.andryyu.lifehelper.rx.pm.RxPermissions;
 import com.android.andryyu.lifehelper.ui.fragment.HomeFragment;
 
 import butterknife.BindView;
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity
     private FloatingActionButton mFab;
 
     private FragmentManager fragmentManager = getSupportFragmentManager();
+    private RxPermissions mRxPermissions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +81,21 @@ public class MainActivity extends AppCompatActivity
             }
         });
         navigationView.setNavigationItemSelectedListener(this);
+        initPermission();
+    }
+
+
+    private void initPermission(){
+        mRxPermissions = new RxPermissions(this);
+        mRxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .subscribe(granted -> {
+                    if (granted) {
+
+                    } else {
+
+                    }
+                });
+
     }
 
     public void setToolbar(Toolbar toolbar) {
@@ -140,7 +158,9 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_world_eyes) {
-
+            currentFragment = HomeFragment.newInstance();
+            FragmentTransaction ft = fragmentManager.beginTransaction();
+            ft.replace(R.id.fl_content, currentFragment).commit();
         } else if (id == R.id.nav_life_note) {
 
         } else if (id == R.id.nav_music) {

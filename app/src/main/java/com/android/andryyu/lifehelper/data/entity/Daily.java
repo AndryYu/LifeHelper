@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by Eric on 15/6/6.
  */
-public class Daily  {
+public class Daily extends BaseEntity {
 
     private int id;
 

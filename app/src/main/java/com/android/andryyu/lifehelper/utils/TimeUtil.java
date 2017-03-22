@@ -82,4 +82,10 @@ public class TimeUtil {
         }
         return week;
     }
+
+
+    public static long getCurrentSeconds(){
+        long ls = System.currentTimeMillis()/1000;
+        return ls;
+    }
 }
