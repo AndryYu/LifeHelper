@@ -5,3 +5,7 @@
 
 
 还在开发中......
+
+
+## Preview
+![NavigationView](/screen_shot/screen_shot01.png?raw=true)
