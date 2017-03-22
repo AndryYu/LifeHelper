@@ -8,4 +8,10 @@
 
 
 ## Preview
-![NavigationView](/screen_shot/screen_shot01.png?raw=true)
+![NavigationView](/screen_shot/screen_shot01.png)
+![OpenEyesList](/screen_shot/screen_shot02.png)
+![OpenEyesDetail](/screen_shot/screen_shot03.png)
+![ZhiHuList](/screen_shot/screen_shot04.png)
+![ZhiHuStory](/screen_shot/screen_shot05.png)
+![Weather](/screen_shot/screen_shot06.png)
+
