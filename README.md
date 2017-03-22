@@ -8,8 +8,9 @@
 
 
 ## Preview
-<img width="150" height="320" src="/screen_shot/screen_shot01.png"/><img width="150" height="320" src="/screen_shot/screen_shot02.png"/>
-<img width="150" height="320" src="/screen_shot/screen_shot03.png"/><img width="150" height="320" src="/screen_shot/screen_shot04.png"/>
-<img width="150" height="320" src="/screen_shot/screen_shot05.png"/><img width="150" height="320" src="/screen_shot/screen_shot06.png"/>
+  <img width="150" height="320" src="/screen_shot/screen_shot01.png"/>  <img width="150" height="320" src="/screen_shot/screen_shot02.png"/>
+<img width="150" height="320" src="/screen_shot/screen_shot03.png"/><br/>
+  <img width="150" height="320" src="/screen_shot/screen_shot04.png"/>
+  <img width="150" height="320" src="/screen_shot/screen_shot05.png"/>  <img width="150" height="320" src="/screen_shot/screen_shot06.png"/>
 
 
