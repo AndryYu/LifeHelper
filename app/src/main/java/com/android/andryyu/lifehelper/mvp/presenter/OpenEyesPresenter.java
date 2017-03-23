@@ -55,7 +55,7 @@ public class OpenEyesPresenter implements OpenEyesContract.Presenter{
 
                         listAll.addAll(itemList);
                         listAll.addAll(itemList1);
-
+                        mView.onNextPagerUrl(entity.getNextPageUrl());
                         mView.onNotify(listAll);
                     }
 

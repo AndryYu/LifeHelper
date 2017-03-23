@@ -142,7 +142,6 @@ public class WeatherActivity extends BaseActivity implements AMapLocationListene
     }
 
     private void load() {
-
         String cityName =  SharedPreferenceUtil.getInstance().getCityName();
         mWeatherPresenter.loadWeatherInfo(cityName);
     }

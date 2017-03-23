@@ -122,12 +122,10 @@ public class OpenEyesFragment extends BaseFragment implements OpenEyesContract.V
 
     @Override
     public void onNotify(List<HomePicEntity.IssueListEntity.ItemListEntity> lists) {
-        listAll = lists;
+        listAll.addAll(lists);
         if(mEyesAdapter!=null){
             mEyesAdapter.notifyDataSetChanged();
         }
-        mEyesAdapter = new OpenEyesAdapter(listAll);
-        mRvEyes.setAdapter(mEyesAdapter);
     }
 
     @Override

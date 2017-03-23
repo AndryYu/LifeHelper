@@ -86,7 +86,7 @@ public class ZhiHuFragment extends BaseFragment implements ZhiHuContract.View {
 
             @Override
             public void onLoadMore(int currentPage) {
-
+                load();
             }
         });
     }
@@ -106,12 +106,10 @@ public class ZhiHuFragment extends BaseFragment implements ZhiHuContract.View {
 
     @Override
     public void onNext(List<BaseEntity> data) {
-        mList = data;
+        mList.addAll(data);
         if(mAdapter != null){
             mAdapter.notifyDataSetChanged();
         }
-        mAdapter = new ZhiHuAdapter(mList);
-        mRvZhihu.setAdapter(mAdapter);
     }
 
     @Override

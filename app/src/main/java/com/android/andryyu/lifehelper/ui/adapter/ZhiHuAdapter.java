@@ -30,6 +30,7 @@ import butterknife.BindView;
 public class ZhiHuAdapter extends AnimRecyclerViewAdapter<RecyclerView.ViewHolder> {
 
     List<BaseEntity> mList;
+    private static final int ITEM_STORY = 0;
 
 
     private Context mContext;
@@ -38,6 +39,11 @@ public class ZhiHuAdapter extends AnimRecyclerViewAdapter<RecyclerView.ViewHolde
         mList = data;
     }
 
+
+    @Override
+    public int getItemViewType(int position) {
+        return ITEM_STORY;
+    }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -55,7 +61,7 @@ public class ZhiHuAdapter extends AnimRecyclerViewAdapter<RecyclerView.ViewHolde
 
     @Override
     public int getItemCount() {
-        return mList.size();
+            return mList.size();
     }
 
 

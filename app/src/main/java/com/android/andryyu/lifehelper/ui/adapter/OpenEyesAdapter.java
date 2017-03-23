@@ -48,9 +48,8 @@ public class OpenEyesAdapter extends AnimRecyclerViewAdapter<RecyclerView.ViewHo
         if ("video".equals(itemListEntity.getType())) {
             return VIDEO;
         }
-        if("banner2".equals(itemListEntity.getType()))
-            return TEXT;
-        return super.getItemViewType(position);
+
+        return TEXT;
     }
 
     @Override
