@@ -24,6 +24,14 @@ public class ImageUtil {
                 .into(view);
     }
 
+    public static void loadUrlWithZoom(Context context, Uri uri, ImageView view){
+        Glide.with(context)
+                .load(uri)
+                .thumbnail(0.5f)
+                .centerCrop()
+                .into(view);
+    }
+
     public static void clear(Context context) {
         Glide.get(context).clearMemory();
     }

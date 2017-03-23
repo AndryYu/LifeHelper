@@ -71,12 +71,7 @@ public class OpenEyesFragment extends BaseFragment implements OpenEyesContract.V
                     new SwipeRefreshLayout.OnRefreshListener() {
                         @Override
                         public void onRefresh() {
-                            mSwlEyes.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    load(nextURL);
-                                }
-                            }, 1000);
+                            load(FirstIndex);
                         }
                     });
         }
@@ -122,7 +117,9 @@ public class OpenEyesFragment extends BaseFragment implements OpenEyesContract.V
 
     @Override
     public void onNotify(List<HomePicEntity.IssueListEntity.ItemListEntity> lists) {
+        listAll.clear();
         listAll.addAll(lists);
+
         if(mEyesAdapter!=null){
             mEyesAdapter.notifyDataSetChanged();
         }
@@ -130,6 +127,6 @@ public class OpenEyesFragment extends BaseFragment implements OpenEyesContract.V
 
     @Override
     public void onError(Throwable e) {
-
+        mSwlEyes.setRefreshing(false);
     }
 }

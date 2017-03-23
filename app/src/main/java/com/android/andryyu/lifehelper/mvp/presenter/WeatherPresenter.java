@@ -31,7 +31,7 @@ public class WeatherPresenter implements WeatherContract.Presenter {
 
     @Override
     public void loadWeatherInfo(String city) {
-        mService.mWeatherAPI("北京", hefengKEY)
+        mService.mWeatherAPI(city, hefengKEY)
                 .flatMap(weatherAPI -> {
                     String status = weatherAPI.mHeWeatherDataService30s.get(0).status;
                     if ("no more requests".equals(status)) {

@@ -11,5 +11,11 @@
     <dimen name="cardview_margin">8dp</dimen>
 
     <dimen name="default_padding">16dp</dimen>
+
+    <dimen name="font_size_small">12sp</dimen>
+    <dimen name="font_size_text">14sp</dimen>
+    <dimen name="font_size_title">16sp</dimen>
     <dimen name="font_size_big">18sp</dimen>
+    <dimen name="font_size_appbar">20sp</dimen>
+    <dimen name="font_size_bigtitle">24sp</dimen>
 </resources>

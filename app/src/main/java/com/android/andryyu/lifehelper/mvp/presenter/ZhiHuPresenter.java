@@ -5,6 +5,7 @@ import com.android.andryyu.lifehelper.data.entity.Daily;
 import com.android.andryyu.lifehelper.data.entity.StorySection;
 import com.android.andryyu.lifehelper.http.api.ApiService;
 import com.android.andryyu.lifehelper.mvp.view.ZhiHuContract;
+import com.android.andryyu.lifehelper.rx.RxUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +14,6 @@ import javax.inject.Inject;
 
 import rx.Observable;
 import rx.Observer;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by yufei on 2017/3/21.
@@ -38,8 +37,7 @@ public class ZhiHuPresenter implements ZhiHuContract.Presenter {
     @Override
     public void loadZhiHuInfo() {
         Observable<Daily> observable = lastDatetime > 0 ? mService.getBefore(lastDatetime) : mService.getLatest();
-        observable.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+        observable.compose(RxUtils.rxSchedulerHelper())
                 .subscribe(new Observer<Daily>() {
                     @Override
                     public void onNext(Daily daily) {

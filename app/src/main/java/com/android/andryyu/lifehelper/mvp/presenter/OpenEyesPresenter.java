@@ -3,6 +3,7 @@ package com.android.andryyu.lifehelper.mvp.presenter;
 import com.android.andryyu.lifehelper.data.entity.HomePicEntity;
 import com.android.andryyu.lifehelper.http.api.ApiService;
 import com.android.andryyu.lifehelper.mvp.view.OpenEyesContract;
+import com.android.andryyu.lifehelper.rx.RxUtils;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -11,9 +12,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import rx.Observer;
-import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by yufei on 2017/3/21.
@@ -42,8 +41,7 @@ public class OpenEyesPresenter implements OpenEyesContract.Presenter{
                         mView.doOnTerminate();
                     }
                 })
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(RxUtils.rxSchedulerHelper())
                 .subscribe(new Observer<HomePicEntity>(){
                     @Override
                     public void onNext(HomePicEntity entity) {

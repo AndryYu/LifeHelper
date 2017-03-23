@@ -3,13 +3,13 @@ package com.android.andryyu.lifehelper.ui.act;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.andryyu.lifehelper.R;
+import com.android.andryyu.lifehelper.base.BaseActivity;
 import com.android.andryyu.lifehelper.utils.ImageUtil;
 import com.android.andryyu.lifehelper.utils.NetUtil;
 import com.android.andryyu.lifehelper.utils.ToastUtil;
@@ -21,7 +21,7 @@ import butterknife.OnClick;
 /**
  * 视频详情activity
  */
-public class VideoDetailActivity extends AppCompatActivity {
+public class VideoDetailActivity extends BaseActivity {
 
     @BindView(R.id.video_detail_iv)
     ImageView videoDetailIv;
@@ -44,12 +44,13 @@ public class VideoDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_detail);
         ButterKnife.bind(this);
+
+        initView();
         initData();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    //初始化数据
-    private void initData() {
+    @Override
+    public void initView() {
         String feed = getIntent().getStringExtra("feed");//背景图片
         title = getIntent().getStringExtra("title");
         String time = getIntent().getStringExtra("time");//时间
@@ -57,13 +58,17 @@ public class VideoDetailActivity extends AppCompatActivity {
         String blurred = getIntent().getStringExtra("blurred");//模糊图片
         video = getIntent().getStringExtra("video");//视频播放地址
         //给控件设置数据
-       // videoDetailIv.setImageURI(Uri.parse(feed));
-        ImageUtil.loadUrl(this, Uri.parse(feed), videoDetailIv);
+        ImageUtil.loadUrlWithZoom(this, Uri.parse(feed), videoDetailIv);
         videoDetailTitle.setText(title);
         videoDetailTime.setText(time);
         videoDetailDesc.setText(desc);
-        //videoDetailIvmo.setImageURI(Uri.parse(blurred));
-        ImageUtil.loadUrl(this, Uri.parse(blurred), videoDetailIvmo);
+        ImageUtil.loadUrlWithZoom(this, Uri.parse(blurred), videoDetailIvmo);
+    }
+
+    //初始化数据
+    public void initData() {
+        getSupportActionBar().setTitle(title);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 

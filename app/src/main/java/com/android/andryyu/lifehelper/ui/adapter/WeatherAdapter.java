@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.android.andryyu.lifehelper.R;
 import com.android.andryyu.lifehelper.base.BaseViewHolder;
-import com.android.andryyu.lifehelper.data.SharedPreferenceUtil;
+import com.android.andryyu.lifehelper.data.SPUtil;
 import com.android.andryyu.lifehelper.data.entity.Weather;
 import com.android.andryyu.lifehelper.utils.AnimRecyclerViewAdapter;
 import com.android.andryyu.lifehelper.utils.ImageUtil;
@@ -92,7 +92,7 @@ public class WeatherAdapter extends AnimRecyclerViewAdapter<RecyclerView.ViewHol
             default:
                 break;
         }
-        if (SharedPreferenceUtil.getInstance().getMainAnim()) {
+        if (SPUtil.getInstance().getMainAnim()) {
             showItemAnim(holder.itemView, position);
         }
     }
@@ -137,7 +137,7 @@ public class WeatherAdapter extends AnimRecyclerViewAdapter<RecyclerView.ViewHol
                 tempPm.setText(String.format("PM2.5: %s μg/m³", TextUtil.safeText(weather.aqi.city.pm25)));
                 tempQuality.setText(TextUtil.safeText("空气质量： ", weather.aqi.city.qlty));
                 ImageUtil.load(itemView.getContext(),
-                    SharedPreferenceUtil.getInstance().getInt(weather.now.cond.txt, R.mipmap.none),
+                    SPUtil.getInstance().getInt(weather.now.cond.txt, R.mipmap.none),
                     weatherIcon);
             } catch (Exception e) {
 
@@ -275,7 +275,7 @@ public class WeatherAdapter extends AnimRecyclerViewAdapter<RecyclerView.ViewHol
                         }
                     }
                     ImageUtil.load(mContext,
-                        SharedPreferenceUtil.getInstance().getInt(weather.dailyForecast.get(i).cond.txtD, R.mipmap.none),
+                        SPUtil.getInstance().getInt(weather.dailyForecast.get(i).cond.txtD, R.mipmap.none),
                         forecastIcon[i]);
                     forecastTemp[i].setText(
                         String.format("%s℃ - %s℃",

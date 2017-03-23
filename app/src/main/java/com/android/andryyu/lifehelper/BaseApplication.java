@@ -2,7 +2,9 @@ package com.android.andryyu.lifehelper;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.v7.app.AppCompatDelegate;
 
+import com.android.andryyu.lifehelper.data.SPUtil;
 import com.android.andryyu.lifehelper.di.components.DaggerNetComponent;
 import com.android.andryyu.lifehelper.di.components.NetComponent;
 import com.android.andryyu.lifehelper.di.modules.NetModule;
@@ -32,9 +34,10 @@ public class BaseApplication extends Application {
         super.onCreate();
         context = this;
 
-        initTypeFace();
+       // initTypeFace();
         initNet();
         AppCrashHandler.getInstance().setCrashHandler(this);
+        initAppNightMode();
     }
 
     /**
@@ -61,5 +64,17 @@ public class BaseApplication extends Application {
 
     public NetComponent getNetComponent(){
         return netComponent;
+    }
+
+    /**
+     * <p>initAppNightMode</p>
+     * @Description:    判断主题样式
+     */
+    private void initAppNightMode(){
+        if (SPUtil.getInstance().getAppModule() == 0) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
     }
 }
