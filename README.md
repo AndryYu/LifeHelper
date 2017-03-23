@@ -8,4 +8,11 @@
 
 
 ## Preview
-![NavigationView](/screen_shot/screen_shot01.png?raw=true)
+<img width="173" height="274"  src="/screen_shot/screen_shot01.png"></img>
+<img width="173" height="274"  src="/screen_shot/screen_shot02.png"></img>
+<img width="173" height="274"  src="/screen_shot/screen_shot03.png"></img>
+<img width="173" height="274"  src="/screen_shot/screen_shot04.png"></img>
+<img width="173" height="274"  src="/screen_shot/screen_shot05.png"></img>
+<img width="173" height="274"  src="/screen_shot/screen_shot06.png"></img>
+
+
