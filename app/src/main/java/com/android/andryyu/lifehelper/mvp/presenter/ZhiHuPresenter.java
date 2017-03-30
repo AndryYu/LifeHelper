@@ -14,6 +14,8 @@ import javax.inject.Inject;
 
 import rx.Observable;
 import rx.Observer;
+import rx.functions.Action0;
+import rx.functions.Action1;
 
 /**
  * Created by yufei on 2017/3/21.
@@ -38,6 +40,18 @@ public class ZhiHuPresenter implements ZhiHuContract.Presenter {
     public void loadZhiHuInfo() {
         Observable<Daily> observable = lastDatetime > 0 ? mService.getBefore(lastDatetime) : mService.getLatest();
         observable.compose(RxUtils.rxSchedulerHelper())
+                .doOnRequest(new Action1<Long>() {
+                    @Override
+                    public void call(Long aLong) {
+                        mView.doOnRequest();
+                    }
+                })
+                .doOnTerminate(new Action0() {
+                    @Override
+                    public void call() {
+                        mView.doOnTerminate();
+                    }
+                })
                 .subscribe(new Observer<Daily>() {
                     @Override
                     public void onNext(Daily daily) {

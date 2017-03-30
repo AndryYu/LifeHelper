@@ -15,6 +15,12 @@ public class OpenEyesContract {
     public interface View extends BaseView<Presenter> {
 
         /**
+         * <p>doOnRequest</p>
+         * @Description:  网络请求前
+         */
+        void  doOnRequest();
+
+        /**
          * <p>doOnTerminate</p>
          * @Description:    监听
          */

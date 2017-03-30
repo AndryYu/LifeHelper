@@ -11,8 +11,10 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import rx.Observable;
 import rx.Observer;
 import rx.functions.Action0;
+import rx.functions.Action1;
 
 /**
  * Created by yufei on 2017/3/21.
@@ -34,15 +36,22 @@ public class OpenEyesPresenter implements OpenEyesContract.Presenter{
 
     @Override
     public void loadOpenEyesInfo(String url) {
-        mService.OpenEyesVideo(url)
+        Observable<HomePicEntity> observable = mService.OpenEyesVideo(url);
+        observable.compose(RxUtils.rxSchedulerHelper())
+                .doOnRequest(new Action1<Long>() {
+                    @Override
+                    public void call(Long aLong) {
+                        mView.doOnRequest();
+                    }
+                })
                 .doOnTerminate(new Action0() {
                     @Override
                     public void call() {
                         mView.doOnTerminate();
                     }
                 })
-                .compose(RxUtils.rxSchedulerHelper())
                 .subscribe(new Observer<HomePicEntity>(){
+
                     @Override
                     public void onNext(HomePicEntity entity) {
                         List<HomePicEntity.IssueListEntity> issueList = entity.getIssueList();

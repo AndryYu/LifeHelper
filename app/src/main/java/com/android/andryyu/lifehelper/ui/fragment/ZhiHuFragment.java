@@ -105,6 +105,11 @@ public class ZhiHuFragment extends BaseFragment implements ZhiHuContract.View {
     }
 
     @Override
+    public void doOnRequest() {
+        mSwlZhihu.setRefreshing(true);
+    }
+
+    @Override
     public void onNext(List<BaseEntity> data) {
         mList.addAll(data);
         if(mAdapter != null){

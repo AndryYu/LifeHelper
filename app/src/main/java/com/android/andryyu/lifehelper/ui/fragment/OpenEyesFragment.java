@@ -33,7 +33,7 @@ import butterknife.ButterKnife;
  * Created by yufei on 2017/3/16.
  */
 
-public class OpenEyesFragment extends BaseFragment implements OpenEyesContract.View{
+public class OpenEyesFragment extends BaseFragment implements OpenEyesContract.View {
 
 
     @BindView(R.id.rv_eyes)
@@ -46,9 +46,9 @@ public class OpenEyesFragment extends BaseFragment implements OpenEyesContract.V
 
     private LinearLayoutManager mLinearLayoutManager;
     private String nextURL;
-    OpenEyesAdapter mEyesAdapter;
-    List<HomePicEntity.IssueListEntity.ItemListEntity> listAll = new ArrayList<>();
-    String FirstIndex = "http://baobab.wandoujia.com/api/v2/feed?num=2&udid=26868b32e808498db32fd51fb422d00175e179df&vc=83";
+    private OpenEyesAdapter mEyesAdapter;
+    private List<HomePicEntity.IssueListEntity.ItemListEntity> listAll = new ArrayList<>();
+    private String FirstIndex = "http://baobab.wandoujia.com/api/v2/feed?num=2&udid=26868b32e808498db32fd51fb422d00175e179df&vc=83";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -62,6 +62,7 @@ public class OpenEyesFragment extends BaseFragment implements OpenEyesContract.V
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initDagger();
+
         if (mSwlEyes != null) {
             mSwlEyes.setColorSchemeResources(android.R.color.holo_blue_bright,
                     android.R.color.holo_green_light,
@@ -71,7 +72,12 @@ public class OpenEyesFragment extends BaseFragment implements OpenEyesContract.V
                     new SwipeRefreshLayout.OnRefreshListener() {
                         @Override
                         public void onRefresh() {
-                            load(FirstIndex);
+                            mSwlEyes.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    load(FirstIndex);
+                                }
+                            }, 1000);
                         }
                     });
         }
@@ -82,17 +88,20 @@ public class OpenEyesFragment extends BaseFragment implements OpenEyesContract.V
         mRvEyes.setAdapter(mEyesAdapter);
 
         load(FirstIndex);
-        if(mSwlEyes != null){
-            mRvEyes.addOnScrollListener(new EndLessOnScrollListener(mLinearLayoutManager) {
-                @Override
-                public void onLoadMore(int currentPage) {
-                    load(nextURL);
+        mRvEyes.addOnScrollListener(new EndLessOnScrollListener(mLinearLayoutManager) {
+            @Override
+            public void onLoadMore(int currentPage) {
+                boolean isRefreshing = mSwlEyes.isRefreshing();
+                if (isRefreshing) {
+                    mEyesAdapter.notifyItemRemoved(mEyesAdapter.getItemCount());
+                    return;
                 }
-            });
-        }
+                load(nextURL);
+            }
+        });
     }
 
-    private  void initDagger(){
+    private void initDagger() {
         NetComponent netComponent = BaseApplication.get(getActivity()).getNetComponent();
         DaggerOpenEyesComponent.builder()
                 .netComponent(netComponent)
@@ -101,8 +110,13 @@ public class OpenEyesFragment extends BaseFragment implements OpenEyesContract.V
                 .inject(this);
     }
 
-    private void load(String url){
+    private void load(String url) {
         mPresenter.loadOpenEyesInfo(url);
+    }
+
+    @Override
+    public void doOnRequest() {
+        mSwlEyes.setRefreshing(true);
     }
 
     @Override
@@ -120,7 +134,7 @@ public class OpenEyesFragment extends BaseFragment implements OpenEyesContract.V
         listAll.clear();
         listAll.addAll(lists);
 
-        if(mEyesAdapter!=null){
+        if (mEyesAdapter != null) {
             mEyesAdapter.notifyDataSetChanged();
         }
     }

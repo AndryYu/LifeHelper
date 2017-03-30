@@ -14,6 +14,12 @@ public class ZhiHuContract {
     public interface View extends BaseView<Presenter> {
 
         /**
+         * <p>doOnRequest</p>
+         * @Description:  网络请求前
+         */
+        void  doOnRequest();
+
+        /**
          * <p>onNext</p>
          * @param data
          * @Description:    下一步
