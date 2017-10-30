@@ -1,6 +1,6 @@
 package com.android.andryyu.lifehelper.mvp.presenter;
 
-import com.android.andryyu.lifehelper.data.entity.HomePicEntity;
+import com.android.andryyu.lifehelper.entity.HomePicEntity;
 import com.android.andryyu.lifehelper.http.api.ApiService;
 import com.android.andryyu.lifehelper.mvp.view.OpenEyesContract;
 import com.android.andryyu.lifehelper.rx.RxUtils;

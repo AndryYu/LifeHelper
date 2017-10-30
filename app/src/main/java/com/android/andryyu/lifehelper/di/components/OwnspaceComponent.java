@@ -2,7 +2,7 @@ package com.android.andryyu.lifehelper.di.components;
 
 import com.android.andryyu.lifehelper.di.UserScope;
 import com.android.andryyu.lifehelper.di.modules.OwnspaceModule;
-import com.android.andryyu.lifehelper.ui.fragment.OwnspaceFragment;
+import com.android.andryyu.lifehelper.ui.fragment.dandu.DanduFragment;
 
 import dagger.Component;
 
@@ -12,5 +12,5 @@ import dagger.Component;
 @UserScope
 @Component(modules = OwnspaceModule.class, dependencies = NetComponent.class)
 public interface OwnspaceComponent {
-    void inject(OwnspaceFragment fragment);
+    void inject(DanduFragment fragment);
 }

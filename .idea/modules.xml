@@ -3,8 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/LifeHelper.iml" filepath="$PROJECT_DIR$/LifeHelper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RecyclerViewHelper/RecyclerViewHelper.iml" filepath="$PROJECT_DIR$/RecyclerViewHelper/RecyclerViewHelper.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/vitamio2/vitamio2.iml" filepath="$PROJECT_DIR$/vitamio2/vitamio2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/iconlibrary/iconlibrary.iml" filepath="$PROJECT_DIR$/iconlibrary/iconlibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sublibrary/sublibrary.iml" filepath="$PROJECT_DIR$/sublibrary/sublibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vitamio/vitamio.iml" filepath="$PROJECT_DIR$/vitamio/vitamio.iml" />
     </modules>
   </component>
 </project>

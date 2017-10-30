@@ -17,6 +17,12 @@ public class SPUtil {
     private static String USER_SETTINGS = "USER_SETTINGS";
     private static String APP_MODULE = "APP_MODULE";
 
+    public static final String DEFAULT_STRING = "";
+    public static final int DEFAULT_INT = 0;
+    public static final boolean DEFAULT_BOOLEAN = false;
+    public static final long DEFAULT_LONG = 0;
+    public static final float DEFAULT_FLOAT = 0.0f;
+
     public static final String CITY_NAME = "城市";//选择城市
     public static final String HOUR = "current_hour";//当前小时
 
@@ -58,6 +64,10 @@ public class SPUtil {
 
     public String getString(String key, String defValue) {
         return mPrefs.getString(key, defValue);
+    }
+
+    public String getString(String key) {
+        return mPrefs.getString(key, DEFAULT_STRING);
     }
 
     public SPUtil putBoolean(String key, boolean value) {

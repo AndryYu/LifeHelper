@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v7.widget.RecyclerView
+        <com.android.andryyu.lifehelper.widget.recycleView.XRecyclerView
             android:id="@+id/rv_zhihu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

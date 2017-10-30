@@ -2,7 +2,7 @@ package com.android.andryyu.lifehelper.mvp.view;
 
 import com.android.andryyu.lifehelper.base.BasePresenter;
 import com.android.andryyu.lifehelper.base.BaseView;
-import com.android.andryyu.lifehelper.data.entity.HomePicEntity;
+import com.android.andryyu.lifehelper.entity.HomePicEntity;
 
 import java.util.List;
 

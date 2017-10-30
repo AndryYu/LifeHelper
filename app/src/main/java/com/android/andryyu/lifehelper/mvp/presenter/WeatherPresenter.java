@@ -1,6 +1,6 @@
 package com.android.andryyu.lifehelper.mvp.presenter;
 
-import com.android.andryyu.lifehelper.data.entity.Weather;
+import com.android.andryyu.lifehelper.entity.Weather;
 import com.android.andryyu.lifehelper.http.api.ApiService;
 import com.android.andryyu.lifehelper.mvp.view.WeatherContract;
 import com.android.andryyu.lifehelper.rx.RxUtils;

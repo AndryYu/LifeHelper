@@ -1,18 +1,18 @@
 package com.android.andryyu.lifehelper.ui.act;
 
 import android.Manifest;
-import android.content.res.Configuration;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.internal.BottomNavigationItemView;
+import android.support.design.internal.BottomNavigationMenuView;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,23 +29,31 @@ import com.android.andryyu.lifehelper.base.BaseActivity;
 import com.android.andryyu.lifehelper.base.BaseFragment;
 import com.android.andryyu.lifehelper.data.SPUtil;
 import com.android.andryyu.lifehelper.rx.pm.RxPermissions;
-import com.android.andryyu.lifehelper.ui.fragment.HomeFragment;
+import com.android.andryyu.lifehelper.ui.fragment.MineFragment;
+import com.android.andryyu.lifehelper.ui.fragment.dandu.DanduFragment;
+import com.android.andryyu.lifehelper.ui.fragment.dandu.ItemFragment;
+import com.android.andryyu.lifehelper.ui.fragment.VideoFragment;
+import com.android.andryyu.lifehelper.ui.fragment.home.HomeFragment;
 import com.android.andryyu.lifehelper.utils.TextUtil;
 import com.android.andryyu.lifehelper.utils.ToastUtil;
+
+import java.lang.reflect.Field;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends BaseActivity
-        implements NavigationView.OnNavigationItemSelectedListener, AMapLocationListener {
+public class MainActivity extends BaseActivity implements AMapLocationListener {
 
     @BindView(R.id.fl_content)
     FrameLayout mFlContent;
-    private BaseFragment currentFragment;
+    @BindView(R.id.navigation)
+    BottomNavigationView btmNv;
+    private HomeFragment homeFragment;
+    private VideoFragment videoFragment;
+    private DanduFragment danduFragment;
+    private MineFragment mineFragment;
 
     private Toolbar mToolbar;
-    private DrawerLayout drawer;
-    private NavigationView navigationView;
     private FloatingActionButton mFab;
 
     private FragmentManager fragmentManager = getSupportFragmentManager();
@@ -55,6 +63,29 @@ public class MainActivity extends BaseActivity
     public AMapLocationClient mLocationClient = null;
     //声明定位回调监听器
     public AMapLocationClientOption mLocationOption = null;
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.navigation_home:
+                    selectFragment(homeFragment);
+                    return true;
+                case R.id.nav_video:
+                    selectFragment(videoFragment);
+                    return true;
+                case R.id.nav_music:
+                    selectFragment(danduFragment);
+                    return true;
+                case R.id.navigation_notifications:
+                    selectFragment(mineFragment);
+                    return true;
+            }
+            return false;
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,38 +102,37 @@ public class MainActivity extends BaseActivity
         if (fragmentManager == null) {
             fragmentManager = getSupportFragmentManager();
         }
-        currentFragment = HomeFragment.newInstance();
-        FragmentTransaction ft = fragmentManager.beginTransaction();
-        ft.replace(R.id.fl_content, currentFragment).commit();
+        homeFragment = HomeFragment.newInstance();
+        videoFragment = VideoFragment.newInstance();
+        danduFragment = DanduFragment.newInstance();
+        mineFragment = MineFragment.newInstance();
 
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
-        View headerView = navigationView.getHeaderView(0);
-        tvLocationCity = (TextView) headerView.findViewById(R.id.tv_header_city);
-        headerView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                WeatherActivity.launch(MainActivity.this);
-            }
-        });
-        navigationView.setNavigationItemSelectedListener(this);
+        selectFragment(homeFragment);
+        btmNv.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        disableShiftMode(btmNv);
+    }
+
+    private void selectFragment(BaseFragment fragment) {
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        ft.replace(R.id.fl_content, fragment).commit();
     }
 
     @Override
     public void initData() {
         mRxPermissions = new RxPermissions(this);
         mRxPermissions.requestEach(Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.ACCESS_COARSE_LOCATION)
-                .subscribe(permission  -> {
+                Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE)
+                .subscribe(permission -> {
                     if (permission.granted) {
-                        if(permission.name.equals(Manifest.permission.WRITE_EXTERNAL_STORAGE)){
+                        if (permission.name.equals(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
 
-                        }else if(permission.name.equals(Manifest.permission.ACCESS_COARSE_LOCATION)){
+                        } else if (permission.name.equals(Manifest.permission.ACCESS_COARSE_LOCATION)) {
                             location();
                         }
                     } else {
-                        if(permission.name.equals(Manifest.permission.WRITE_EXTERNAL_STORAGE)){
+                        if (permission.name.equals(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
 
-                        }else if(permission.name.equals(Manifest.permission.ACCESS_COARSE_LOCATION)){
+                        } else if (permission.name.equals(Manifest.permission.ACCESS_COARSE_LOCATION)) {
 
                         }
                     }
@@ -116,12 +146,6 @@ public class MainActivity extends BaseActivity
             getSupportActionBar().setTitle("生活助手");
             getSupportActionBar().setHomeButtonEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                    this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-            drawer.setDrawerListener(toggle);
-            toggle.syncState();
         }
     }
 
@@ -148,16 +172,13 @@ public class MainActivity extends BaseActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
+
+        if (check()) {
+            super.onBackPressed();
         } else {
-            if(check()) {
-                super.onBackPressed();
-            }else{
-                Snackbar.make(drawer, "再按一次退出！", Snackbar.LENGTH_LONG).show();
-            }
+            //Snackbar.make(drawer, "再按一次退出！", Snackbar.LENGTH_LONG).show();
         }
+
     }
 
     @Override
@@ -177,65 +198,10 @@ public class MainActivity extends BaseActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (id == R.id.nav_world_eyes) {
-            currentFragment = HomeFragment.newInstance();
-            FragmentTransaction ft = fragmentManager.beginTransaction();
-            ft.replace(R.id.fl_content, currentFragment).commit();
-        } else if (id == R.id.nav_life_note) {
-
-        } else if (id == R.id.nav_music) {
-
-        } else if (id == R.id.nav_book) {
-
-        } else if (id == R.id.nav_ganhuo) {
-
-        } else if (id == R.id.nav_theme) {
-            drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
-                @Override
-                public void onDrawerSlide(View drawerView, float slideOffset) {
-
-                }
-
-                @Override
-                public void onDrawerOpened(View drawerView) {
-
-                }
-
-                @Override
-                public void onDrawerClosed(View drawerView) {
-                    if ((getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK)
-                            == Configuration.UI_MODE_NIGHT_YES) {
-                        SPUtil.getInstance().setAppModule(0);
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    } else {
-                        SPUtil.getInstance().setAppModule(1);
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    }
-                    getWindow().setWindowAnimations(R.style.WindowAnimationFadeInOut);
-                    recreate();
-                }
-
-                @Override
-                public void onDrawerStateChanged(int newState) {
-
-                }
-            });
-        } else if (id == R.id.nav_settings) {
-
-        } else if (id == R.id.nav_about) {
-
-        }
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
 
     /**
      * <p>location</p>
+     *
      * @Description:高德定位
      */
     private void location() {
@@ -281,4 +247,28 @@ public class MainActivity extends BaseActivity
             tvLocationCity.setText(SPUtil.getInstance().getCityName());
         }
     }
+
+
+    public static void disableShiftMode(BottomNavigationView view) {
+        BottomNavigationMenuView menuView = (BottomNavigationMenuView) view.getChildAt(0);
+        try {
+            Field shiftingMode = menuView.getClass().getDeclaredField("mShiftingMode");
+            shiftingMode.setAccessible(true);
+            shiftingMode.setBoolean(menuView, false);
+            shiftingMode.setAccessible(false);
+            for (int i = 0; i < menuView.getChildCount(); i++) {
+                BottomNavigationItemView item = (BottomNavigationItemView) menuView.getChildAt(i);
+                //noinspection RestrictedApi
+                item.setShiftingMode(false);
+                // set once again checked value, so view will be updated
+                //noinspection RestrictedApi
+                item.setChecked(item.getItemData().isChecked());
+            }
+        } catch (NoSuchFieldException e) {
+            Log.e("BNVHelper", "Unable to get shift mode field", e);
+        } catch (IllegalAccessException e) {
+            Log.e("BNVHelper", "Unable to change value of shift mode", e);
+        }
+    }
+
 }

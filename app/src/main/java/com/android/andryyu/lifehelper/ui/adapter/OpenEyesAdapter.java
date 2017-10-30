@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.android.andryyu.lifehelper.R;
 import com.android.andryyu.lifehelper.base.BaseViewHolder;
-import com.android.andryyu.lifehelper.data.entity.HomePicEntity;
+import com.android.andryyu.lifehelper.entity.HomePicEntity;
 import com.android.andryyu.lifehelper.ui.act.VideoDetailActivity;
 import com.android.andryyu.lifehelper.utils.AnimRecyclerViewAdapter;
 import com.android.andryyu.lifehelper.utils.ImageUtil;

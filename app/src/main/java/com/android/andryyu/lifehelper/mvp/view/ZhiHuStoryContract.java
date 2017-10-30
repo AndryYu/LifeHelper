@@ -2,7 +2,7 @@ package com.android.andryyu.lifehelper.mvp.view;
 
 import com.android.andryyu.lifehelper.base.BasePresenter;
 import com.android.andryyu.lifehelper.base.BaseView;
-import com.android.andryyu.lifehelper.data.entity.Story;
+import com.android.andryyu.lifehelper.entity.zhihu.Story;
 
 /**
  * Created by yufei on 2017/3/22.

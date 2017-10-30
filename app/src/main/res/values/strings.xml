@@ -11,4 +11,33 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
 
     <string name="weather_errorLocation">location failure, load default city!</string>
+
+    <string name="title_home">Home</string>
+    <string name="title_video">Video</string>
+    <string name="title_music">Read</string>
+    <string name="title_notifications">Mine</string>
+
+    <string name="username_or_email">Username or Email</string>
+    <string name="password">Password</string>
+    <string name="btn_login">Login</string>
+
+    <string name="fail_auth_user">Fail to init your information,You have to check you network condition or try it later. </string>
+
+    <!--warning-->
+    <string name="try_again">Try Again</string>
+    <string name="input_complete">Input your username and password</string>
+
+    <string name="auth_error">Username or password is incorrect</string>
+    <string name="over_auth_error">Maximum number of login attempts exceeded. Please try again later.</string>
+
+    <!-- USER INFO -->
+    <string name="email">Email</string>
+    <string name="location">Location</string>
+    <string name="blog">Blog</string>
+    <string name="join">Join</string>
+    <string name="company">Company</string>
+    <string name="title_activity_readme">ReadmeActivity</string>
+
+    <string name="douban_detail_iamge">douban_detail_image</string>
+
 </resources>

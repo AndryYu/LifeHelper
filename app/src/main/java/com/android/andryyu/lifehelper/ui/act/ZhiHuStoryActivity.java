@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.android.andryyu.lifehelper.BaseApplication;
 import com.android.andryyu.lifehelper.R;
 import com.android.andryyu.lifehelper.base.BaseActivity;
-import com.android.andryyu.lifehelper.data.entity.Story;
+import com.android.andryyu.lifehelper.entity.zhihu.Story;
 import com.android.andryyu.lifehelper.di.components.DaggerZhiHuStoryComponent;
 import com.android.andryyu.lifehelper.di.components.NetComponent;
 import com.android.andryyu.lifehelper.di.modules.ZhiHuStoryModule;

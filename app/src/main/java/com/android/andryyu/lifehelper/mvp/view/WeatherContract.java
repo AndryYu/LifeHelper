@@ -2,7 +2,7 @@ package com.android.andryyu.lifehelper.mvp.view;
 
 import com.android.andryyu.lifehelper.base.BasePresenter;
 import com.android.andryyu.lifehelper.base.BaseView;
-import com.android.andryyu.lifehelper.data.entity.Weather;
+import com.android.andryyu.lifehelper.entity.Weather;
 
 /**
  * Created by yufei on 2017/3/16.

@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.android.andryyu.lifehelper.R;
 import com.android.andryyu.lifehelper.base.BaseViewHolder;
 import com.android.andryyu.lifehelper.data.SPUtil;
-import com.android.andryyu.lifehelper.data.entity.Weather;
+import com.android.andryyu.lifehelper.entity.Weather;
 import com.android.andryyu.lifehelper.utils.AnimRecyclerViewAdapter;
 import com.android.andryyu.lifehelper.utils.ImageUtil;
 import com.android.andryyu.lifehelper.utils.TextUtil;

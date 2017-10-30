@@ -35,4 +35,12 @@ public class ToastUtil {
     public static void showLong(String msg) {
         Toast.makeText(BaseApplication.getContext(), msg, Toast.LENGTH_LONG).show();
     }
+
+    public static void showShort(int msg) {
+        Toast.makeText(BaseApplication.getContext(), msg, Toast.LENGTH_SHORT).show();
+    }
+
+    public static void showLong(int msg) {
+        Toast.makeText(BaseApplication.getContext(), msg, Toast.LENGTH_LONG).show();
+    }
 }

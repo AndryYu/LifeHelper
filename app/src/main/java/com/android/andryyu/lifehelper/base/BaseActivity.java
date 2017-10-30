@@ -1,14 +1,11 @@
 package com.android.andryyu.lifehelper.base;
 
-import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.WindowManager;
 
 import com.android.andryyu.lifehelper.widget.SystemBarTintManager;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
-
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public abstract class BaseActivity extends RxAppCompatActivity {
 
@@ -44,22 +41,5 @@ public abstract class BaseActivity extends RxAppCompatActivity {
             tintManager.setStatusBarTintEnabled(true);
             tintManager.setStatusBarTintResource(color);
         }
-    }
-
-    /**
-     * Android4.4
-     */
-    public void setStatusBarColorForKitkat(int color) {
-        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
-            this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            SystemBarTintManager tintManager = new SystemBarTintManager(this);
-            tintManager.setStatusBarTintEnabled(true);
-            tintManager.setStatusBarTintResource(color);
-        }
-    }
-
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 }

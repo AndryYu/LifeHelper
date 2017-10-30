@@ -13,7 +13,7 @@ import com.android.andryyu.lifehelper.BaseApplication;
 import com.android.andryyu.lifehelper.R;
 import com.android.andryyu.lifehelper.base.BaseActivity;
 import com.android.andryyu.lifehelper.data.SPUtil;
-import com.android.andryyu.lifehelper.data.entity.Weather;
+import com.android.andryyu.lifehelper.entity.Weather;
 import com.android.andryyu.lifehelper.di.components.DaggerWeatherComponent;
 import com.android.andryyu.lifehelper.di.components.NetComponent;
 import com.android.andryyu.lifehelper.di.modules.WeatherModule;

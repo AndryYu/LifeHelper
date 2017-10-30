@@ -1,7 +1,7 @@
 package com.android.andryyu.lifehelper.mvp.presenter;
 
-import com.android.andryyu.lifehelper.data.entity.Item;
-import com.android.andryyu.lifehelper.data.entity.Result;
+import com.android.andryyu.lifehelper.entity.dandu.Item;
+import com.android.andryyu.lifehelper.entity.dandu.Result;
 import com.android.andryyu.lifehelper.http.api.ApiService;
 import com.android.andryyu.lifehelper.mvp.view.OwnspaceContract;
 import com.android.andryyu.lifehelper.utils.TimeUtil;
@@ -42,12 +42,17 @@ public class OwnspacePresenter implements OwnspaceContract.Presenter {
 
                     @Override
                     public void onError(Throwable e) {
-
+                        mView.showOnFailure();
                     }
 
                     @Override
                     public void onNext(Result.Data<List<Item>> listData) {
-
+                        int size = listData.getDatas().size();
+                        if (size > 0) {
+                            mView.updateListUI(listData.getDatas());
+                        } else {
+                            mView.showNoMore();
+                        }
                     }
                 });
     }

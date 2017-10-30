@@ -9,6 +9,22 @@ import android.text.TextUtils;
 
 public class TextUtil {
 
+    /**
+     * 裁剪新闻的 Source 数据
+     *
+     * @param source
+     * @return
+     */
+    public static String clipNewsSource(String source) {
+        if (TextUtils.isEmpty(source)) {
+            return source;
+        }
+        int i = source.indexOf("-");
+        if (i != -1) {
+            return source.substring(0, i);
+        }
+        return source;
+    }
 
     /**
      * 安全的 String 返回

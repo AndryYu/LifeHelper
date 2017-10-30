@@ -9,7 +9,12 @@
 
 
     <dimen name="cardview_margin">8dp</dimen>
+    <dimen name="card_margin">10dip</dimen>
 
+    <dimen name="item_content_textsize">16sp</dimen>
+
+    <!-- 列表与手机侧边的坚决 -->
+    <dimen name="item_to_left_right_margin">8dip</dimen>
     <dimen name="default_padding">16dp</dimen>
 
     <dimen name="font_size_small">12sp</dimen>
@@ -18,4 +23,31 @@
     <dimen name="font_size_big">18sp</dimen>
     <dimen name="font_size_appbar">20sp</dimen>
     <dimen name="font_size_bigtitle">24sp</dimen>
+    <dimen name="parallax_image_height">230dp</dimen>
+
+    <!--用户信息 -->
+    <dimen name="three_userlabel_height">80dip</dimen>
+    <dimen name="three_userlabel_wrap_height">90dip</dimen>
+    <dimen name="user_info_icon_size">25dip</dimen>
+
+    <!-- repo -->
+    <dimen name="repo_icon_size">35dp</dimen>
+    <dimen name="repo_name_size">18sp</dimen>
+
+    <dimen name="news_ads_height">180dp</dimen>
+    <dimen name="news_icon_width">100dp</dimen>
+    <dimen name="news_icon_height">75dp</dimen>
+
+    <dimen name="dp_10">10dp</dimen>
+    <dimen name="dp_12">12dp</dimen>
+    <dimen name="dp_14">14dp</dimen>
+    <dimen name="dp_16">16dp</dimen>
+    <dimen name="dp_18">18dp</dimen>
+    <dimen name="sp_12">12sp</dimen>
+    <dimen name="sp_14">14sp</dimen>
+    <dimen name="sp_16">16sp</dimen>
+
+    <!--电影详情图片的宽高-->
+    <dimen name="movie_detail_width">125dp</dimen>
+    <dimen name="movie_detail_height">165dp</dimen>
 </resources>

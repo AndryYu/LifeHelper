@@ -13,8 +13,8 @@ import android.widget.TextView;
 
 import com.android.andryyu.lifehelper.R;
 import com.android.andryyu.lifehelper.base.BaseViewHolder;
-import com.android.andryyu.lifehelper.data.entity.BaseEntity;
-import com.android.andryyu.lifehelper.data.entity.Story;
+import com.android.andryyu.lifehelper.entity.zhihu.BaseEntity;
+import com.android.andryyu.lifehelper.entity.zhihu.Story;
 import com.android.andryyu.lifehelper.ui.act.ZhiHuStoryActivity;
 import com.android.andryyu.lifehelper.utils.AnimRecyclerViewAdapter;
 import com.android.andryyu.lifehelper.utils.ImageUtil;

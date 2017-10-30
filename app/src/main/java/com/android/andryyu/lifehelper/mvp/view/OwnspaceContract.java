@@ -2,6 +2,9 @@ package com.android.andryyu.lifehelper.mvp.view;
 
 import com.android.andryyu.lifehelper.base.BasePresenter;
 import com.android.andryyu.lifehelper.base.BaseView;
+import com.android.andryyu.lifehelper.entity.dandu.Item;
+
+import java.util.List;
 
 /**
  * Created by yufei on 2017/3/21.
@@ -10,11 +13,9 @@ import com.android.andryyu.lifehelper.base.BaseView;
 public class OwnspaceContract {
 
     public interface View extends BaseView<Presenter> {
-        /**
-         * <p>doOnTerminate</p>
-         * @Description:    监听
-         */
-        void doOnTerminate();
+        void showNoMore();
+        void updateListUI(List<Item> itemList);
+        void showOnFailure();
     }
 
     public interface Presenter extends BasePresenter {
