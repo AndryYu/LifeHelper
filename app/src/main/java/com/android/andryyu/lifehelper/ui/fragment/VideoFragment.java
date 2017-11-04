@@ -3,10 +3,13 @@ package com.android.andryyu.lifehelper.ui.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.android.andryyu.lifehelper.BaseApplication;
 import com.android.andryyu.lifehelper.R;
@@ -28,6 +31,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * Created by yufei on 2017/10/28.
@@ -35,18 +39,19 @@ import butterknife.ButterKnife;
 
 public class VideoFragment extends BaseFragment implements OpenEyesContract.View {
 
-    public static VideoFragment newInstance() {
-        VideoFragment fragment = new VideoFragment();
-        return fragment;
-    }
-
+    private String TAG = VideoFragment.class.getSimpleName();
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
     @BindView(R.id.rv_eyes)
     XRecyclerView mRvEyes;
     @BindView(R.id.swl_eyes)
     SwipeRefreshLayout mSwlEyes;
-
     @Inject
     OpenEyesPresenter mPresenter;
+
+    Unbinder unbinder;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
 
     private LinearLayoutManager mLinearLayoutManager;
     private String nextURL;
@@ -54,10 +59,15 @@ public class VideoFragment extends BaseFragment implements OpenEyesContract.View
     private List<HomePicEntity.IssueListEntity.ItemListEntity> listAll = new ArrayList<>();
     private String FirstIndex = "http://baobab.wandoujia.com/api/v2/feed?num=2&udid=26868b32e808498db32fd51fb422d00175e179df&vc=83";
 
+    public static VideoFragment newInstance() {
+        VideoFragment fragment = new VideoFragment();
+        return fragment;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_eyes, container, false);
-        ButterKnife.bind(this, view);
+        unbinder = ButterKnife.bind(this, view);
         return view;
     }
 
@@ -66,7 +76,11 @@ public class VideoFragment extends BaseFragment implements OpenEyesContract.View
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initDagger();
+        setFragmentpage(TAG);
 
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        toolbar.setTitle("");
+        tvTitle.setText("开眼");
         if (mSwlEyes != null) {
             mSwlEyes.setColorSchemeResources(android.R.color.holo_blue_bright,
                     android.R.color.holo_green_light,
@@ -146,5 +160,11 @@ public class VideoFragment extends BaseFragment implements OpenEyesContract.View
     @Override
     public void onError(Throwable e) {
         mSwlEyes.setRefreshing(false);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 }

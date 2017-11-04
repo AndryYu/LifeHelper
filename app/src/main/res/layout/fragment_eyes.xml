@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
             android:minHeight="?attr/actionBarSize"
-            app:layout_scrollFlags="scroll|enterAlways"
+            app:layout_scrollFlags="enterAlways"
             app:popupTheme="@style/AppTheme.PopupOverlay" >
 
             <TextView

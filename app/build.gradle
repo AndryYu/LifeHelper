@@ -79,5 +79,6 @@ dependencies {
     compile project(':sublibrary')
     compile project(':iconlibrary')
     compile project(':RecyclerViewHelper')
+    compile files('libs/umeng_shareboard_widget.jar')
 }
 

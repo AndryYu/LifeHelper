@@ -45,6 +45,7 @@ import butterknife.Unbinder;
 
 public class MineFragment extends BaseFragment implements GithubUserContract.View {
 
+    private String TAG = MineFragment.class.getSimpleName();
     @BindView(R.id.collapsing_toolbar)
     CollapsingToolbarLayout collapsingToolbar;
     @BindView(R.id.backdrop)
@@ -119,6 +120,7 @@ public class MineFragment extends BaseFragment implements GithubUserContract.Vie
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        setFragmentpage(TAG);
         initView();
         initDagger();
         mPresenter.auth();
@@ -166,7 +168,6 @@ public class MineFragment extends BaseFragment implements GithubUserContract.Vie
     @Override
     public void onFinish(User user) {
         this.user = user;
-        toolbar.setTitle(user.getLogin());
         loadUser(user);
         Glide.with(this.getContext()).load(user.getAvatar_url()).centerCrop().into(backDrop);
     }

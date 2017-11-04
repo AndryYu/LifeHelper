@@ -2,23 +2,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="6dp"
     android:orientation="vertical">
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp">
+        android:layout_height="210dp">
 
         <ImageView
             android:id="@+id/iv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:background="@drawable/boman_selector" />
 
         <LinearLayout
-
             android:id="@+id/ll_moban"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/boman_selector"
             android:orientation="vertical">
 
             <RelativeLayout

@@ -9,6 +9,7 @@ import android.view.WindowManager;
 import com.android.andryyu.lifehelper.R;
 import com.android.andryyu.lifehelper.ui.act.MainActivity;
 import com.android.andryyu.lifehelper.widget.particleview.ParticleView;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -23,6 +24,8 @@ public class SplashActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_splash);
+
+        MobclickAgent.openActivityDurationTrack(false);
 
         pv_logo = (ParticleView) findViewById(R.id.pv_logo);
         pv_logo.setOnParticleAnimListener(new ParticleView.ParticleAnimListener() {

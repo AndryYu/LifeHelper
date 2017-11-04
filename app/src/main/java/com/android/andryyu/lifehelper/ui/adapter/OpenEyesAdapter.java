@@ -96,8 +96,7 @@ public class OpenEyesAdapter extends AnimRecyclerViewAdapter<RecyclerView.ViewHo
         TextView mTvTime;
         @BindView(R.id.rl_text)
         RelativeLayout mRlText;
-        @BindView(R.id.ll_moban)
-        LinearLayout mLlMoban;
+
 
         private Context mContext;
         public OpenEyesVedioHolder(Context context,View itemView) {
@@ -197,7 +196,7 @@ public class OpenEyesAdapter extends AnimRecyclerViewAdapter<RecyclerView.ViewHo
 
             if (!TextUtils.isEmpty(image)) {
                 mTvHomeText.setTextSize(20);
-                mTvHomeText.setText("-Weekend  special-");
+                mTvHomeText.setText("~开眼编辑精选~");
             }
         }
     }

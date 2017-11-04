@@ -41,9 +41,6 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:25.2.0'
     testCompile 'junit:junit:4.12'
-    androidTestCompile('com.android.support.test.espresso:espresso-core:3.0.1', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
     compile "com.google.code.gson:gson:$rootProject.ext.gsonVersion"
     compile files('libs/commons-codec-1.9.jar')
 }

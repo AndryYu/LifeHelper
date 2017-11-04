@@ -8,6 +8,7 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,7 +22,6 @@ import com.android.andryyu.lifehelper.di.modules.ZhiHuStoryModule;
 import com.android.andryyu.lifehelper.mvp.presenter.ZhiHuStoryPresenter;
 import com.android.andryyu.lifehelper.mvp.view.ZhiHuStoryContract;
 import com.android.andryyu.lifehelper.utils.ImageUtil;
-import com.android.andryyu.lifehelper.widget.MyWebView;
 
 import javax.inject.Inject;
 
@@ -47,7 +47,7 @@ public class ZhiHuStoryActivity extends BaseActivity implements ZhiHuStoryContra
     @BindView(R.id.main_content)
     CoordinatorLayout mMainContent;
     @BindView(R.id.web_content)
-    MyWebView mWebContent;
+    WebView mWebContent;
 
     @Inject
     ZhiHuStoryPresenter mPresenter;

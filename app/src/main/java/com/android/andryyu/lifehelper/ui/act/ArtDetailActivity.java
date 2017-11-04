@@ -1,7 +1,10 @@
 package com.android.andryyu.lifehelper.ui.act;
 
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -22,14 +25,13 @@ import com.android.andryyu.lifehelper.mvp.view.ArtDetailContract;
 import com.android.andryyu.lifehelper.utils.AnalysisHTML;
 import com.android.andryyu.lifehelper.utils.AppUtil;
 import com.bumptech.glide.Glide;
-import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ArtDetailActivity extends BaseActivity implements ArtDetailContract.View{
+public class ArtDetailActivity extends BaseActivity implements ArtDetailContract.View {
 
     @BindView(R.id.image)
     ImageView image;
@@ -39,8 +41,6 @@ public class ArtDetailActivity extends BaseActivity implements ArtDetailContract
     TextView newsTopType;
     @BindView(R.id.news_top_date)
     TextView newsTopDate;
-    @BindView(R.id.news_top_title)
-    TextView newsTopTitle;
     @BindView(R.id.news_top_author)
     TextView newsTopAuthor;
     @BindView(R.id.news_top_lead)
@@ -54,18 +54,14 @@ public class ArtDetailActivity extends BaseActivity implements ArtDetailContract
     @BindView(R.id.webView)
     WebView webView;
     @BindView(R.id.scrollView)
-    ObservableScrollView scrollView;
-    @BindView(R.id.favorite)
-    ImageView favorite;
-    @BindView(R.id.write)
-    ImageView write;
-    @BindView(R.id.share)
-    ImageView share;
-    @BindView(R.id.toolBar)
+    NestedScrollView scrollView;
+    @BindView(R.id.toolbar)
     Toolbar toolBar;
 
     @Inject
     ArtDetailPresenter mPresenter;
+    @BindView(R.id.collapsing_toolbar)
+    CollapsingToolbarLayout collapsingToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +75,8 @@ public class ArtDetailActivity extends BaseActivity implements ArtDetailContract
 
     @Override
     public void initView() {
-
+        setSupportActionBar(toolBar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -97,17 +94,16 @@ public class ArtDetailActivity extends BaseActivity implements ArtDetailContract
         super.onStart();
         Bundle bundle = getIntent().getExtras();
         Item item = bundle.getParcelable("item");
-        if (item != null){
+        if (item != null) {
             Glide.with(this).load(item.getThumbnail()).centerCrop().into(image);
-            int mode = Integer.valueOf(item.getModel());
             newsTopLeadLine.setVisibility(View.VISIBLE);
             newsTopImgUnderLine.setVisibility(View.VISIBLE);
             newsTopType.setText("文 字");
             newsTopDate.setText(item.getUpdate_time());
-            newsTopTitle.setText(item.getTitle());
+            collapsingToolbar.setTitle(item.getTitle());
             newsTopAuthor.setText(item.getAuthor());
             newsTopLead.setText(item.getLead());
-            newsTopLead.setLineSpacing(1.5f,1.8f);
+            newsTopLead.setLineSpacing(1.5f, 1.8f);
             mPresenter.getDetail(item.getId());
         }
     }
@@ -156,5 +152,15 @@ public class ArtDetailActivity extends BaseActivity implements ArtDetailContract
             localStringBuffer.append("&show_video=1");
         }
         return localStringBuffer.toString();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

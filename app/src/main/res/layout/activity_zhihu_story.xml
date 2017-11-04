@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_content"
     android:layout_width="match_parent"
-    android:layout_height="0dp"
+    android:layout_height="match_parent"
     android:layout_weight="1"
     android:background="@color/window_color"
     android:fitsSystemWindows="true">
@@ -49,7 +49,6 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
                         android:background="@mipmap/shadow_layer_bottom" />
-
                 </RelativeLayout>
 
                 <android.support.v7.widget.Toolbar
@@ -59,9 +58,7 @@
                     app:layout_collapseMode="pin"
                     app:layout_scrollFlags="scroll|enterAlways"
                     app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-
             </android.support.design.widget.CollapsingToolbarLayout>
-
         </android.support.design.widget.AppBarLayout>
 
         <android.support.v4.widget.NestedScrollView
@@ -90,7 +87,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <com.android.andryyu.lifehelper.widget.MyWebView
+                    <WebView
                         android:id="@+id/web_content"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

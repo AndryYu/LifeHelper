@@ -2,6 +2,7 @@ package com.android.andryyu.lifehelper.ui.act;
 
 import android.Manifest;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
@@ -56,7 +57,7 @@ public class MainActivity extends BaseActivity implements AMapLocationListener {
     private Toolbar mToolbar;
     private FloatingActionButton mFab;
 
-    private FragmentManager fragmentManager = getSupportFragmentManager();
+    private FragmentManager fragmentManager ;
     private RxPermissions mRxPermissions;
     private TextView tvLocationCity;
     //声明AMapLocationClient类对象
@@ -102,26 +103,85 @@ public class MainActivity extends BaseActivity implements AMapLocationListener {
         if (fragmentManager == null) {
             fragmentManager = getSupportFragmentManager();
         }
-        homeFragment = HomeFragment.newInstance();
-        videoFragment = VideoFragment.newInstance();
-        danduFragment = DanduFragment.newInstance();
-        mineFragment = MineFragment.newInstance();
 
-        selectFragment(homeFragment);
+        initFragment();
         btmNv.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         disableShiftMode(btmNv);
     }
 
+    /**
+     * <p>initFragment</p>
+     * @Description 用add方法添加所有fragment
+     */
+    private void initFragment(){
+        //如果把FragmentTransaction作为全局变量，多次commit会报java.lang.IllegalStateException:commit already called
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        if(homeFragment==null) {
+            homeFragment = HomeFragment.newInstance();
+            ft.add(R.id.fl_content, homeFragment);
+        }
+        if(videoFragment==null) {
+            videoFragment = VideoFragment.newInstance();
+            ft.add(R.id.fl_content, videoFragment);
+        }
+        if(danduFragment==null) {
+            danduFragment = DanduFragment.newInstance();
+            ft.add(R.id.fl_content, danduFragment);
+        }
+        if(mineFragment==null) {
+            mineFragment = MineFragment.newInstance();
+            ft.add(R.id.fl_content, mineFragment);
+        }
+        hideAllFragment(ft);
+        ft.show(homeFragment).commit();
+    }
+
+    /**
+     * <p>selectFragment</p>
+     * @Description 显示被选中的fragment
+     * @param fragment
+     */
     private void selectFragment(BaseFragment fragment) {
         FragmentTransaction ft = fragmentManager.beginTransaction();
-        ft.replace(R.id.fl_content, fragment).commit();
+        hideAllFragment(ft);
+        ft.show(fragment);
+        ft.commit();
+    }
+
+    /**
+     * <p>hideAllFragment</p>
+     * @Description 隐藏全部fragment
+     */
+    private void hideAllFragment(FragmentTransaction ft){
+        if(homeFragment!=null){
+            ft.hide(homeFragment);
+        }
+        if(videoFragment!=null){
+            ft.hide(videoFragment);
+        }
+        if(danduFragment!=null){
+            ft.hide(danduFragment);
+        }
+        if(mineFragment!=null){
+            ft.hide(mineFragment);
+        }
     }
 
     @Override
     public void initData() {
+        if(Build.VERSION.SDK_INT>=23){
         mRxPermissions = new RxPermissions(this);
         mRxPermissions.requestEach(Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_PHONE_STATE)
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.READ_PHONE_STATE,
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.CALL_PHONE,
+                Manifest.permission.READ_LOGS,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.SET_DEBUG_APP,
+                Manifest.permission.SYSTEM_ALERT_WINDOW,
+                Manifest.permission.GET_ACCOUNTS,
+                Manifest.permission.WRITE_APN_SETTINGS)
                 .subscribe(permission -> {
                     if (permission.granted) {
                         if (permission.name.equals(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
@@ -137,6 +197,7 @@ public class MainActivity extends BaseActivity implements AMapLocationListener {
                         }
                     }
                 });
+        }
     }
 
     public void setToolbar(Toolbar toolbar) {

@@ -21,6 +21,7 @@ import com.android.andryyu.lifehelper.di.modules.GithubLoginModule;
 import com.android.andryyu.lifehelper.mvp.presenter.GithubLoginPresenter;
 import com.android.andryyu.lifehelper.mvp.view.GithubLoginContract;
 import com.android.andryyu.lifehelper.utils.ToastUtil;
+import com.umeng.analytics.MobclickAgent;
 
 import javax.inject.Inject;
 
@@ -82,6 +83,7 @@ public class LoginActivity extends BaseActivity implements GithubLoginContract.V
                     return;
                 }
                 mPresenter.createToken(accountName, password);
+                MobclickAgent.onEvent(LoginActivity.this,"GithubLogin");
             }
         });
     }

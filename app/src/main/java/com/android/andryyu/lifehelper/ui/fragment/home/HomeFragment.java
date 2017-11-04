@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,14 +32,14 @@ import butterknife.ButterKnife;
 
 public class HomeFragment extends BaseFragment {
 
+    private String TAG = HomeFragment.class.getSimpleName();
     @BindView(R.id.tab_home)
     TabLayout mTabHome;
     @BindView(R.id.vp_home)
     ViewPager mVpHome;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    @BindView(R.id.fab_home)
-    FloatingActionButton mFabHome;
+
     private ArrayList<String> mTitleList;
     private ArrayList<Fragment> mFragments ;
 
@@ -58,6 +59,9 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        ((AppCompatActivity) getActivity()).setSupportActionBar(mToolbar);
+        setFragmentpage(TAG);
         mTitleList = new ArrayList<>(3);
         mFragments = new ArrayList<>(3);
         //mTitleList.add("开眼视频");

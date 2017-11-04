@@ -32,6 +32,7 @@ import butterknife.Unbinder;
 
 public class DanduFragment extends BaseFragment implements OwnspaceContract.View {
 
+    private String TAG = DanduFragment.class.getSimpleName();
     @Inject
     OwnspacePresenter mPresenter;
     @BindView(R.id.vp_dandu)
@@ -47,6 +48,7 @@ public class DanduFragment extends BaseFragment implements OwnspaceContract.View
         DanduFragment fragment = new DanduFragment();
         return fragment;
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_dandu, container, false);
@@ -58,6 +60,7 @@ public class DanduFragment extends BaseFragment implements OwnspaceContract.View
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        setFragmentpage(TAG);
         initView();
         initData();
     }
