@@ -1,15 +1,22 @@
 package com.android.andryyu.lifehelper.di.modules;
 
+import com.android.andryyu.lifehelper.BaseApplication;
 import com.android.andryyu.lifehelper.BuildConfig;
 import com.android.andryyu.lifehelper.http.api.ApiService;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import okhttp3.Cache;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -22,77 +29,39 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 @Module
 public class NetModule {
 
-   /* @Provides
-    @Singleton
-    public OkHttpClient provideOkHttpClient() {
-        File cacheFile = new File(FileUtil.getAppCacheDir(BaseApplication.getContext()), "/HttpCache");
-        Cache cache = new Cache(cacheFile, 1024 * 1024 * 100);
-        Interceptor cacheInterceptor = new Interceptor() {
-            @Override
-            public Response intercept(Chain chain) throws IOException {
-                Request request = chain.request();
-                if (!NetUtil.isNetworkReachable(BaseApplication.getContext())) {
-                    request = request.newBuilder()
-                            .cacheControl(CacheControl.FORCE_CACHE)
-                            .build();
-                }
-                Response response = chain.proceed(request);
-                if (NetUtil.isNetworkReachable(BaseApplication.getContext())) {
-                    int maxAge = 0;
-                    // 有网络时 设置缓存超时时间0个小时
-                    response.newBuilder()
-                            .removeHeader("Pragma")
-                            .header("Cache-Control", "public, max-age=" + maxAge)
-                            .build();
-                } else {
-                    // 无网络时，设置超时为1周
-                    int maxStale = 60 * 60 * 24 * 28;
-                    response.newBuilder()
-                            .removeHeader("Pragma")
-                            .header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)
-                            .build();
-                }
-                return response;
-            }
-        };
-        return new OkHttpClient.Builder()
-                .cache(cache).addInterceptor(cacheInterceptor)
-                .connectTimeout(15, TimeUnit.SECONDS)
-                .readTimeout(20, TimeUnit.SECONDS)
-                .writeTimeout(20, TimeUnit.SECONDS)
-                .retryOnConnectionFailure(true)
-                .build();
-    }
-
-    @Provides
-    @Singleton
-    public Retrofit provideRetrofit(OkHttpClient okhttpClient) {
-        return new Retrofit.Builder()
-                .baseUrl("http://andryyu.cn/")
-                .client(okhttpClient)
-                .addConverterFactory(GsonConverterFactory.create(gson()))
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .build();
-    }
-
-    @Provides
-    @Singleton
-    public ApiService provideApiService(Retrofit retrofit) {
-        return retrofit.create(ApiService.class);
-    }*/
-
     @Provides
     @Singleton
     public OkHttpClient provideOkHttpClient() {
+        //做网络缓存
+        File httpCacheDirectory = new File(BaseApplication.getContext().getExternalCacheDir(), "cache_zhiyixing");
+
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
         loggingInterceptor.setLevel(BuildConfig.DEBUG ? HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.NONE);
         OkHttpClient okhttpClient = new OkHttpClient.Builder()
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .connectTimeout(20, TimeUnit.SECONDS)
                 .readTimeout(20,TimeUnit.SECONDS)
+                .cache(new Cache(httpCacheDirectory, 1024*1024*10))
                 .addInterceptor(loggingInterceptor)
+                .addNetworkInterceptor(new CacheInterceptor())
                 .build();
         return okhttpClient;
+    }
+
+    //网络缓存(如果服务器不支持的话，手动添加Cache-Control和max-age=)
+    public class CacheInterceptor implements Interceptor {
+        @Override
+        public Response intercept(Interceptor.Chain chain) throws IOException {
+            Request request = chain.request();
+            Response response = chain.proceed(request);
+            Response response1 = response.newBuilder()
+                    .removeHeader("Pragma")
+                    .removeHeader("Cache-Control")
+                    //cache for 2 days
+                    .header("Cache-Control", "max-age=" + 3600 * 24 * 2)
+                    .build();
+            return response1;
+        }
     }
 
     @Provides

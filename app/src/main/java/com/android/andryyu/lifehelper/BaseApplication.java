@@ -9,6 +9,7 @@ import com.android.andryyu.lifehelper.di.components.DaggerNetComponent;
 import com.android.andryyu.lifehelper.di.components.NetComponent;
 import com.android.andryyu.lifehelper.di.modules.NetModule;
 import com.android.andryyu.lifehelper.utils.exception.AppCrashHandler;
+import com.squareup.leakcanary.LeakCanary;
 
 /**
  * Created by yufei on 2017/3/12.
@@ -45,6 +46,11 @@ public class BaseApplication extends Application {
         initNet();
         AppCrashHandler.getInstance().setCrashHandler(this);
         initAppNightMode();
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            // This process is dedicated to LeakCanary for heap analysis.You should not init your app in this process.
+            return;
+        }
+        LeakCanary.install(this);
     }
 
     /**

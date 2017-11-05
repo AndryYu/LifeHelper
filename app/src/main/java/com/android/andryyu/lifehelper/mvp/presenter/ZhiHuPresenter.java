@@ -23,7 +23,6 @@ import rx.functions.Action1;
 
 public class ZhiHuPresenter implements ZhiHuContract.Presenter {
 
-
     ZhiHuContract.View mView;
     ApiService mService;
     private List<BaseEntity> data = new ArrayList<>();

@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -39,6 +40,7 @@ import com.android.andryyu.lifehelper.utils.TextUtil;
 import com.android.andryyu.lifehelper.utils.ToastUtil;
 
 import java.lang.reflect.Field;
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
