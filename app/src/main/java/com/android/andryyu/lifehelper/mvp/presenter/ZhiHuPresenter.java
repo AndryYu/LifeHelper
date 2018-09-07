@@ -12,10 +12,11 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import rx.Observable;
-import rx.Observer;
-import rx.functions.Action0;
-import rx.functions.Action1;
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
+
 
 /**
  * Created by yufei on 2017/3/21.
@@ -37,21 +38,21 @@ public class ZhiHuPresenter implements ZhiHuContract.Presenter {
 
     @Override
     public void loadZhiHuInfo() {
+        mView.doOnRequest();
         Observable<Daily> observable = lastDatetime > 0 ? mService.getBefore(lastDatetime) : mService.getLatest();
         observable.compose(RxUtils.rxSchedulerHelper())
-                .doOnRequest(new Action1<Long>() {
+                .doOnTerminate(new Action() {
                     @Override
-                    public void call(Long aLong) {
-                        mView.doOnRequest();
-                    }
-                })
-                .doOnTerminate(new Action0() {
-                    @Override
-                    public void call() {
+                    public void run() throws Exception {
                         mView.doOnTerminate();
                     }
                 })
                 .subscribe(new Observer<Daily>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
                     @Override
                     public void onNext(Daily daily) {
                         if (daily != null) {
@@ -66,11 +67,11 @@ public class ZhiHuPresenter implements ZhiHuContract.Presenter {
 
                     @Override
                     public void onError(Throwable e) {
-                            mView.onError(e);
+                        mView.onError(e);
                     }
 
                     @Override
-                    public void onCompleted() {
+                    public void onComplete() {
 
                     }
                 });

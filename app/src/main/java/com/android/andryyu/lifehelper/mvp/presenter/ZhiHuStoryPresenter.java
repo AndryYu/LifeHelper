@@ -6,9 +6,11 @@ import com.android.andryyu.lifehelper.mvp.view.ZhiHuStoryContract;
 
 import javax.inject.Inject;
 
-import rx.Observer;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+
 
 /**
  * Created by yufei on 2017/3/22.
@@ -34,13 +36,18 @@ public class ZhiHuStoryPresenter implements ZhiHuStoryContract.Presenter{
                 .subscribe(new Observer<Story>() {
 
                     @Override
-                    public void onCompleted() {
+                    public void onComplete() {
 
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         mView.onError(e);
+                    }
+
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
                     }
 
                     @Override

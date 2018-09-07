@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">生活帮手</string>
     <string name="weather_errorLocation">定位失败,加载默认城市</string>
     <string name="weather_complete">加载完毕，✺◟(∗❛ัᴗ❛ั∗)◞✺,</string>
 

@@ -4,7 +4,7 @@ import com.android.andryyu.lifehelper.base.BasePresenter;
 import com.android.andryyu.lifehelper.base.BaseView;
 import com.android.andryyu.lifehelper.entity.item.NewsMultiItem;
 import com.android.andryyu.lifehelper.entity.news.NewsInfo;
-import com.trello.rxlifecycle.LifecycleTransformer;
+import com.trello.rxlifecycle2.LifecycleTransformer;
 
 import java.util.List;
 

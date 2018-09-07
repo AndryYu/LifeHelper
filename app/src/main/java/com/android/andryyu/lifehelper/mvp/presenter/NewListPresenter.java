@@ -12,12 +12,16 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
-import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action0;
-import rx.functions.Func1;
-import rx.schedulers.Schedulers;
+import io.reactivex.Observable;
+import io.reactivex.ObservableTransformer;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
+
 
 /**
  * Created by yufei on 2017/10/30.
@@ -39,36 +43,31 @@ public class NewListPresenter implements NewListContract.Presenter {
     public void getData(String mNewsId, final boolean isRefresh) {
         mService.getNewsList("headline", mNewsId, mPage)
                 .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .subscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .flatMap(new Func1<Map<String, List<NewsInfo>>, Observable<NewsInfo>>() {
+                .flatMap(new Function<Map<String, List<NewsInfo>>, Observable<NewsInfo>>() {
                     @Override
-                    public Observable<NewsInfo> call(Map<String, List<NewsInfo>> newsListMap) {
-                        return Observable.from(newsListMap.get(mNewsId));
+                    public Observable<NewsInfo> apply(Map<String, List<NewsInfo>> newsListMap) throws Exception {
+                        return Observable.fromIterable(newsListMap.get(mNewsId));
                     }
                 })
-                .doOnSubscribe(new Action0() {
+                .doOnSubscribe(new Consumer<Disposable>() {
                     @Override
-                    public void call() {
+                    public void accept(Disposable disposable) throws Exception {
                         if (!isRefresh) {
                             mView.showLoading();
                         }
                     }
                 })
-                .filter(new Func1<NewsInfo, Boolean>() {
-                    @Override
-                    public Boolean call(NewsInfo newsBean) {
-                        if (UIUtils.isAbNews(newsBean)) {
-                            mView.onAdData(newsBean);
-                        }
-                        return !UIUtils.isAbNews(newsBean);
+                .filter(newsInfo -> {
+                    if (UIUtils.isAbNews(newsInfo)) {
+                        mView.onAdData(newsInfo);
                     }
+                    return !UIUtils.isAbNews(newsInfo);
                 })
-                .compose(mTransformer)
-                .subscribe(new Subscriber<List<NewsMultiItem>>() {
+                .compose(handleResult())
+                .subscribe(new Observer<List<NewsMultiItem>>() {
                     @Override
-                    public void onCompleted() {
+                    public void onComplete() {
                         if (isRefresh) {
                             mView.finishRefresh();
                         } else {
@@ -87,6 +86,11 @@ public class NewListPresenter implements NewListContract.Presenter {
                     }
 
                     @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
                     public void onNext(List<NewsMultiItem> newsMultiItems) {
                          mView.onFreshData(newsMultiItems);
                         mPage++;
@@ -98,24 +102,27 @@ public class NewListPresenter implements NewListContract.Presenter {
     public void getMoreData(String mNewsId) {
         mService.getNewsList("headline", mNewsId, mPage)
                 .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .subscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .flatMap(new Func1<Map<String, List<NewsInfo>>, Observable<NewsInfo>>() {
+                .flatMap(new Function<Map<String, List<NewsInfo>>, Observable<NewsInfo>>() {
                     @Override
-                    public Observable<NewsInfo> call(Map<String, List<NewsInfo>> newsListMap) {
-                        return Observable.from(newsListMap.get(mNewsId));
+                    public Observable<NewsInfo> apply(Map<String, List<NewsInfo>> newsListMap) {
+                        return Observable.fromIterable(newsListMap.get(mNewsId));
                     }
                 })
-                .compose(mTransformer)
-                .subscribe(new Subscriber<List<NewsMultiItem>>() {
+                .compose(handleResult())
+                .subscribe(new Observer<List<NewsMultiItem>>() {
                     @Override
-                    public void onCompleted() {
+                    public void onComplete() {
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         mView.showNetError();
+                    }
+
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
                     }
 
                     @Override
@@ -129,21 +136,33 @@ public class NewListPresenter implements NewListContract.Presenter {
     /**
      * 统一变换
      */
-    private Observable.Transformer<NewsInfo, List<NewsMultiItem>> mTransformer = new Observable.Transformer<NewsInfo, List<NewsMultiItem>>() {
+   /* private ObservableTransformer<NewsInfo, List<NewsMultiItem>> mTransformer = new ObservableTransformer<NewsInfo, List<NewsMultiItem>>() {
+
         @Override
-        public Observable<List<NewsMultiItem>> call(Observable<NewsInfo> newsInfoObservable) {
+        public Observable<List<NewsMultiItem>> apply(Observable<NewsInfo> newsInfoObservable) {
             return newsInfoObservable
-                    .map(new Func1<NewsInfo, NewsMultiItem>() {
+                    .map(new Function<NewsInfo, NewsMultiItem>() {
                         @Override
-                        public NewsMultiItem call(NewsInfo newsBean) {
+                        public NewsMultiItem apply(NewsInfo newsBean) {
                             if (UIUtils.isNewsPhotoSet(newsBean.getSkipType())) {
                                 return new NewsMultiItem(NewsMultiItem.ITEM_TYPE_PHOTO_SET, newsBean);
                             }
                             return new NewsMultiItem(NewsMultiItem.ITEM_TYPE_NORMAL, newsBean);
                         }
                     })
-                    .toList()
                     .compose(mView.<List<NewsMultiItem>>bindToLife());
+        }*/
+
+        public <T> ObservableTransformer<NewsInfo, List<NewsMultiItem>> handleResult() {
+            return upstream -> {
+                  upstream.map(newsInfo -> {
+                      if (UIUtils.isNewsPhotoSet(newsInfo.getSkipType())) {
+                          return new NewsMultiItem(NewsMultiItem.ITEM_TYPE_PHOTO_SET, newsInfo);
+                      }
+                      return new NewsMultiItem(NewsMultiItem.ITEM_TYPE_NORMAL, newsInfo);
+                  });
+                return Observable.empty();
+            };
         }
-    };
+
 }

@@ -16,12 +16,14 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 import retrofit2.Response;
-import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func1;
-import rx.schedulers.Schedulers;
+
 
 /**
  * Created by yufei on 2017/10/30.
@@ -48,15 +50,20 @@ public class GithubLoginPresenter implements GithubLoginContract.Presenter {
         mService.createToken(token,"Basic " + Base64.encode(name + ':' + password))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Response<GithubToken>>() {
+                .subscribe(new Observer<Response<GithubToken>>() {
                     @Override
-                    public void onCompleted() {
+                    public void onComplete() {
 
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         mView.showOnFailure(BaseApplication.getContext().getResources().getString(R.string.network_error));
+                    }
+
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
                     }
 
                     @Override
@@ -81,9 +88,9 @@ public class GithubLoginPresenter implements GithubLoginContract.Presenter {
     public void findCertainTokenID(final String username, final String password){
         Log.i(TAG,"Find certain token in existing tokens");
         mService.listToken("Basic " + Base64.encode(username + ':' + password))
-                .flatMap(new Func1<Response<List<GithubToken>>, Observable<Response<Empty>>>() {
+                .flatMap(new Function<Response<List<GithubToken>>, Observable<Response<Empty>>>() {
                     @Override
-                    public Observable<Response<Empty>> call(Response<List<GithubToken>> listResponse) {
+                    public Observable<Response<Empty>> apply(Response<List<GithubToken>> listResponse) throws Exception {
                         for(GithubToken token : listResponse.body()){
                             Log.i(TAG,"Find certain token in existing tokens : " +token.getNote() );
                             if(Constants.TOKEN_NOTE.equals(token.getNote())){
@@ -92,18 +99,33 @@ public class GithubLoginPresenter implements GithubLoginContract.Presenter {
                         }
                         return Observable.empty();
                     }
+                   /* @Override
+                    public Observer<Response<Empty>> apply(Response<List<GithubToken>> listResponse) {
+                        for(GithubToken token : listResponse.body()){
+                            Log.i(TAG,"Find certain token in existing tokens : " +token.getNote() );
+                            if(Constants.TOKEN_NOTE.equals(token.getNote())){
+                                return mService.removeToken("Basic " + Base64.encode(username + ':' + password), String.valueOf(token.getId()));
+                            }
+                        }
+                        return Observable.empty();
+                    }*/
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Response<Empty>>() {
+                .subscribe(new Observer<Response<Empty>>() {
                     @Override
-                    public void onCompleted() {
+                    public void onComplete() {
 
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         mView.showOnFailure(BaseApplication.getContext().getResources().getString(R.string.network_error));
+                    }
+
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
                     }
 
                     @Override

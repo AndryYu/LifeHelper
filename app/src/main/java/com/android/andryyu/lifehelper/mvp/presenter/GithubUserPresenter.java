@@ -14,12 +14,11 @@ import com.andryyu.helper.sub.github.User;
 
 import javax.inject.Inject;
 
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import retrofit2.Response;
-import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by yufei on 2017/10/30.
@@ -46,16 +45,22 @@ public class GithubUserPresenter implements GithubUserContract.Presenter {
         mService.authUser()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Response<User>>() {
-                    @Override
-                    public void onCompleted() {
-
-                    }
+                .subscribe(new Observer<Response<User>>() {
 
                     @Override
                     public void onError(Throwable e) {
                         Log.i(TAG, "auth onFailure = " + e.toString());
                         mView.showOnFailure(BaseApplication.getContext().getString(R.string.fail_auth_user));
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
                     }
 
                     @Override

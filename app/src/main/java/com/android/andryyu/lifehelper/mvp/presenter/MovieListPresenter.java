@@ -7,9 +7,11 @@ import com.android.andryyu.lifehelper.mvp.view.NewListContract;
 
 import javax.inject.Inject;
 
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+
 
 /**
  * Created by yufei on 2017/10/30.
@@ -32,15 +34,20 @@ public class MovieListPresenter implements MovieListContract.Presenter {
         mService.fetchHotMovie()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<HotMovieBean>() {
+                .subscribe(new Observer<HotMovieBean>() {
                     @Override
-                    public void onCompleted() {
+                    public void onComplete() {
 
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         mView.showOnFailure(e.getMessage());
+                    }
+
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
                     }
 
                     @Override

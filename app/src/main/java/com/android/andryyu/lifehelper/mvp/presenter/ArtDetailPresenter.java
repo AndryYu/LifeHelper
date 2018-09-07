@@ -5,11 +5,10 @@ import com.android.andryyu.lifehelper.entity.dandu.Result;
 import com.android.andryyu.lifehelper.http.api.ApiService;
 import com.android.andryyu.lifehelper.mvp.view.ArtDetailContract;
 
-import javax.inject.Inject;
-
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import javax.inject.Inject;;import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by yufei on 2017/10/29.
@@ -31,15 +30,20 @@ public class ArtDetailPresenter implements ArtDetailContract.Presenter{
         mService.getDetail("api", "getPost", itemId, 1)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Result.Data<DetailEntity>>() {
+                .subscribe(new Observer<Result.Data<DetailEntity>>() {
                     @Override
-                    public void onCompleted() {
+                    public void onComplete() {
 
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         mView.showOnFailure();
+                    }
+
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
                     }
 
                     @Override

@@ -11,8 +11,10 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import rx.Observable;
-import rx.Observer;
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
 import rx.functions.Action0;
 import rx.functions.Action1;
 
@@ -36,21 +38,21 @@ public class OpenEyesPresenter implements OpenEyesContract.Presenter{
 
     @Override
     public void loadOpenEyesInfo(String url) {
+        mView.doOnRequest();
         Observable<HomePicEntity> observable = mService.OpenEyesVideo(url);
         observable.compose(RxUtils.rxSchedulerHelper())
-                .doOnRequest(new Action1<Long>() {
+                .doOnTerminate(new Action() {
                     @Override
-                    public void call(Long aLong) {
-                        mView.doOnRequest();
-                    }
-                })
-                .doOnTerminate(new Action0() {
-                    @Override
-                    public void call() {
+                    public void run() throws Exception {
                         mView.doOnTerminate();
                     }
                 })
                 .subscribe(new Observer<HomePicEntity>(){
+
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
 
                     @Override
                     public void onNext(HomePicEntity entity) {
@@ -67,7 +69,7 @@ public class OpenEyesPresenter implements OpenEyesContract.Presenter{
                     }
 
                     @Override
-                    public void onCompleted() {
+                    public void onComplete() {
 
                     }
 

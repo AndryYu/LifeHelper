@@ -7,10 +7,11 @@ import com.android.andryyu.lifehelper.rx.RxUtils;
 
 import javax.inject.Inject;
 
-import rx.Observable;
-import rx.Subscriber;
-import rx.functions.Action0;
-import rx.functions.Action1;
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
+import io.reactivex.functions.Consumer;
 
 /**
  * Created by yufei on 2017/3/16.
@@ -31,6 +32,8 @@ public class WeatherPresenter implements WeatherContract.Presenter {
 
     @Override
     public void loadWeatherInfo(String city) {
+
+        mView.doOnRequest();
         mService.mWeatherAPI(city, hefengKEY)
                 .flatMap(weatherAPI -> {
                     String status = weatherAPI.mHeWeatherDataService30s.get(0).status;
@@ -43,36 +46,40 @@ public class WeatherPresenter implements WeatherContract.Presenter {
                 })
                 .map(weatherAPI -> weatherAPI.mHeWeatherDataService30s.get(0))
                 .compose(RxUtils.rxSchedulerHelper())
-                .doOnRequest(new Action1<Long>() {
+                .doOnError(new Consumer<Throwable>() {
+
                     @Override
-                    public void call(Long aLong) {
-                        mView.doOnRequest();
-                    }
-                }).doOnError(new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
+                    public void accept(Throwable throwable) throws Exception {
                         mView.doOnError();
-                     }
-               }).doOnNext(new Action1<Weather>() {
+                    }
+                }).doOnNext(new Consumer<Weather>() {
+
+            @Override
+            public void accept(Weather weather) throws Exception {
+                mView.doOnNext();
+            }
+                }).doOnTerminate(new Action() {
+            @Override
+            public void run() throws Exception {
+                mView.doOnTerminate();
+            }
+
+                }).subscribe(new Observer<Weather>(){
                      @Override
-                     public void call(Weather api) {
-                        mView.doOnNext();
-                 }
-                }).doOnTerminate(new Action0() {
-                    @Override
-                    public void call() {
-                        mView.doOnTerminate();
-                     }
-                }).subscribe(new Subscriber<Weather>(){
-                     @Override
-                     public void onCompleted() {
+                     public void onComplete() {
                         mView.onCompleted();
                      }
                     @Override
                      public void onError(Throwable e) {
 
                     }
-                    @Override
+
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
                     public void onNext(Weather weather) {
                         mView.onNext(weather);
                    }

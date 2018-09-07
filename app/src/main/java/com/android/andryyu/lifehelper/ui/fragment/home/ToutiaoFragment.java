@@ -19,10 +19,10 @@ import com.android.andryyu.lifehelper.mvp.view.NewListContract;
 import com.android.andryyu.lifehelper.ui.adapter.NewsMultiListAdapter;
 import com.android.andryyu.lifehelper.utils.SliderHelper;
 import com.android.andryyu.lifehelper.widget.recycleView.XRecyclerView;
-import com.daimajia.slider.library.SliderLayout;
 import com.dl7.recycler.adapter.BaseQuickAdapter;
 import com.dl7.recycler.adapter.BaseViewHolder;
-import com.trello.rxlifecycle.LifecycleTransformer;
+import com.trello.rxlifecycle2.LifecycleTransformer;
+
 
 import java.util.List;
 
@@ -42,7 +42,7 @@ public class ToutiaoFragment extends BaseFragment implements NewListContract.Vie
     Unbinder unbinder;
 
     BaseQuickAdapter mAdapter;
-    private SliderLayout mAdSlider;
+    //private SliderLayout mAdSlider;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -107,13 +107,14 @@ public class ToutiaoFragment extends BaseFragment implements NewListContract.Vie
     @Override
     public void onAdData(NewsInfo newsBean) {
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.head_news_list, null);
-        mAdSlider = (SliderLayout) view.findViewById(R.id.slider_ads);
+       /* mAdSlider = (SliderLayout) view.findViewById(R.id.slider_ads);
         SliderHelper.initAdSlider(getActivity(), mAdSlider, newsBean);
-        mAdapter.addHeaderView(view);
+        mAdapter.addHeaderView(view);*/
     }
 
     @Override
     public <T> LifecycleTransformer<T> bindToLife() {
         return null;
     }
+
 }
