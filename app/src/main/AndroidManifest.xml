@@ -64,24 +64,6 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".ui.act.ZhiHuStoryActivity" />
         <activity
-            android:name="io.vov.vitamio.activity.InitActivity"
-            android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
-            android:launchMode="singleTop"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="com.alipay.sdk.app.H5PayActivity"
-            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
-            android:exported="false"
-            android:screenOrientation="behind"
-            android:windowSoftInputMode="adjustResize|stateHidden" />
-        <activity
-            android:name="com.alipay.sdk.app.H5AuthActivity"
-            android:configChanges="orientation|keyboardHidden|navigation"
-            android:exported="false"
-            android:screenOrientation="behind"
-            android:windowSoftInputMode="adjustResize|stateHidden" />
-        <activity
             android:name=".ui.act.ArtDetailActivity" />
 
         <service
@@ -99,7 +81,7 @@
 
         <activity android:name=".ui.act.LoginActivity" />
         <activity android:name=".ui.act.MovieDetailActivity" />
-        <activity android:name=".ui.act.NewDetailActivity"></activity>
+        <activity android:name=".ui.act.NewDetailActivity"/>
 
         <meta-data
             android:name="UMENG_APPKEY"
@@ -108,48 +90,6 @@
             android:name="UMENG_CHANNEL"
             android:value="Umeng"/>
 
-        <activity
-            android:name="com.umeng.qq.tencent.AuthActivity"
-            android:launchMode="singleTask"
-            android:noHistory="true" >
-
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="tencent100424468" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name="com.umeng.qq.tencent.AssistActivity"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:configChanges="orientation|keyboardHidden|screenSize"/>
-
-        <activity
-            android:name="com.umeng.socialize.media.WBShareCallBackActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:exported="false"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity android:name="com.sina.weibo.sdk.web.WeiboSdkWebActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize">
-
-        </activity>
-        <activity
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
-            android:launchMode="singleTask"
-            android:name="com.sina.weibo.sdk.share.WbShareTransActivity">
-            <intent-filter>
-                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-
-        </activity>
     </application>
 
 </manifest>

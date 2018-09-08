@@ -1,1 +1,1 @@
-include ':app', ':sublibrary', ':vitamio', ':iconlibrary', ':RecyclerViewHelper'
+include ':app', ':sublibrary',  ':iconlibrary', ':RecyclerViewHelper'

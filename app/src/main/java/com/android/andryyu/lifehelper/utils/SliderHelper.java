@@ -1,14 +1,5 @@
 package com.android.andryyu.lifehelper.utils;
 
-import android.content.Context;
-import android.os.Bundle;
-
-import com.android.andryyu.lifehelper.entity.news.NewsInfo;
-import com.daimajia.slider.library.Animations.DescriptionAnimation;
-import com.daimajia.slider.library.SliderLayout;
-import com.daimajia.slider.library.SliderTypes.BaseSliderView;
-import com.daimajia.slider.library.SliderTypes.TextSliderView;
-
 /**
  * Created by long on 2016/8/24.
  * 滑动器帮助类
@@ -28,7 +19,7 @@ public final class SliderHelper {
      * @param sliderLayout
      * @param newsBean
      */
-    public static void initAdSlider(final Context context, SliderLayout sliderLayout, NewsInfo newsBean) {
+  /*  public static void initAdSlider(final Context context, SliderLayout sliderLayout, NewsInfo newsBean) {
         for (NewsInfo.AdData adData : newsBean.getAds()) {
             TextSliderView textSliderView = new TextSliderView(context);
             // initialize a SliderLayout
@@ -64,5 +55,5 @@ public final class SliderHelper {
         sliderLayout.setPresetTransformer(SliderLayout.Transformer.Accordion);
         sliderLayout.setCustomAnimation(new DescriptionAnimation());
         sliderLayout.setDuration(4000);
-    }
+    }*/
 }

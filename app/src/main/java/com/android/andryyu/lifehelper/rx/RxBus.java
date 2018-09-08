@@ -1,9 +1,9 @@
 package com.android.andryyu.lifehelper.rx;
 
-import rx.Observable;
-import rx.subjects.PublishSubject;
-import rx.subjects.SerializedSubject;
-import rx.subjects.Subject;
+
+import io.reactivex.Observable;
+import io.reactivex.subjects.PublishSubject;
+import io.reactivex.subjects.Subject;
 
 /**
  * Created by yufei on 2017/3/13.
@@ -11,30 +11,52 @@ import rx.subjects.Subject;
 
 public class RxBus {
 
-    private static volatile RxBus defaultInstance;
+    private static volatile RxBus instance;
 
-    private final Subject<Object, Object> bus;
-    // PublishSubject只会把在订阅发生的时间点之后来自原始Observable的数据发射给观察者
-    public RxBus() {
-        bus = new SerializedSubject<>(PublishSubject.create());
-    }
-    // 单例RxBus
-    public static RxBus getDefault() {
-        if (defaultInstance == null) {
+    private Subject<Object> bus;
+
+    public static RxBus getInstance() {
+        if (instance == null) {
             synchronized (RxBus.class) {
-                if (defaultInstance == null) {
-                    defaultInstance = new RxBus();
+                if (instance == null) {
+                    instance = new RxBus();
                 }
             }
         }
-        return defaultInstance ;
+        return instance;
     }
-    // 发送一个新的事件
-    public void post (Object o) {
+
+    public RxBus() {
+        bus = PublishSubject.create().toSerialized();
+    }
+
+    public void send(Object o) {
         bus.onNext(o);
     }
-    // 根据传递的 eventType 类型返回特定类型(eventType)的 被观察者
-    public <T> Observable<T> toObservable (Class<T> eventType) {
-        return bus.ofType(eventType);
+
+    public Observable<Object> toObservable() {
+        return bus;
+    }
+
+    /**
+     * 根据传递的eventtype类型返回特定类型（eventype）的被观察者
+     */
+    public <T> Observable<T> tObservable(Class<T> EventType) {
+        return bus.ofType(EventType);
+    }
+
+
+    /**
+     * 判断是否有订阅者
+     */
+    public boolean hasSubscribers() {
+        return bus.hasObservers();
+    }
+
+    /**
+     * 注销
+     */
+    public void unRegisterAll() {
+        bus.onComplete();
     }
 }

@@ -25,7 +25,6 @@ import com.android.andryyu.lifehelper.di.modules.GithubUserModule;
 import com.android.andryyu.lifehelper.mvp.presenter.GithubUserPresenter;
 import com.android.andryyu.lifehelper.mvp.view.GithubUserContract;
 import com.android.andryyu.lifehelper.utils.ImageUtil;
-import com.android.andryyu.lifehelper.utils.TextUtil;
 import com.android.andryyu.lifehelper.widget.UserLabel;
 import com.andryyu.helper.sub.github.User;
 import com.bumptech.glide.Glide;
@@ -169,7 +168,7 @@ public class MineFragment extends BaseFragment implements GithubUserContract.Vie
     public void onFinish(User user) {
         this.user = user;
         loadUser(user);
-        Glide.with(this.getContext()).load(user.getAvatar_url()).centerCrop().into(backDrop);
+        Glide.with(getActivity()).load(user.getAvatar_url()).centerCrop().into(backDrop);
     }
 
     public void loadUser(User user) {

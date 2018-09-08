@@ -15,8 +15,6 @@ import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
-import rx.functions.Action0;
-import rx.functions.Action1;
 
 /**
  * Created by yufei on 2017/3/21.
@@ -26,14 +24,12 @@ public class OpenEyesPresenter implements OpenEyesContract.Presenter{
 
     OpenEyesContract.View mView;
     ApiService mService;
-    private Gson mGson;
     List<HomePicEntity.IssueListEntity.ItemListEntity> listAll = new ArrayList<>();
 
     @Inject
     OpenEyesPresenter(OpenEyesContract.View tasksView, ApiService service) {
         mView = tasksView;
         this.mService = service;
-        mGson = new Gson();
     }
 
     @Override
@@ -57,15 +53,17 @@ public class OpenEyesPresenter implements OpenEyesContract.Presenter{
                     @Override
                     public void onNext(HomePicEntity entity) {
                         List<HomePicEntity.IssueListEntity> issueList = entity.getIssueList();
-                        HomePicEntity.IssueListEntity issueListEntity = issueList.get(0);
-                        List<HomePicEntity.IssueListEntity.ItemListEntity> itemList = issueListEntity.getItemList();
-                        HomePicEntity.IssueListEntity issueListEntity2 = issueList.get(1);
-                        List<HomePicEntity.IssueListEntity.ItemListEntity> itemList1 = issueListEntity2.getItemList();
+                        if(issueList.size()>=2) {
+                            HomePicEntity.IssueListEntity issueListEntity = issueList.get(0);
+                            List<HomePicEntity.IssueListEntity.ItemListEntity> itemList = issueListEntity.getItemList();
+                            HomePicEntity.IssueListEntity issueListEntity2 = issueList.get(1);
+                            List<HomePicEntity.IssueListEntity.ItemListEntity> itemList1 = issueListEntity2.getItemList();
 
-                        listAll.addAll(itemList);
-                        listAll.addAll(itemList1);
-                        mView.onNextPagerUrl(entity.getNextPageUrl());
-                        mView.onNotify(listAll);
+                            listAll.addAll(itemList);
+                            listAll.addAll(itemList1);
+                            mView.onNextPagerUrl(entity.getNextPageUrl());
+                            mView.onNotify(listAll);
+                        }
                     }
 
                     @Override

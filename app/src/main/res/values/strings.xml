@@ -16,6 +16,7 @@
     <string name="title_video">Video</string>
     <string name="title_music">Read</string>
     <string name="title_notifications">Mine</string>
+    <string name="title_mine">Mine</string>
 
     <string name="username_or_email">Username or Email</string>
     <string name="password">Password</string>
@@ -39,5 +40,5 @@
     <string name="title_activity_readme">ReadmeActivity</string>
 
     <string name="douban_detail_iamge">douban_detail_image</string>
-
+    <string name="weather_complete">Loading over!!!</string>
 </resources>

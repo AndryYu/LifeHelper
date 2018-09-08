@@ -1,13 +1,7 @@
 package com.android.andryyu.lifehelper.base;
 
-import android.app.Activity;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.view.ViewCompat;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
 
 import com.android.andryyu.lifehelper.widget.SystemBarTintManager;

@@ -12,7 +12,6 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/iconlibrary" />
             <option value="$PROJECT_DIR$/sublibrary" />
-            <option value="$PROJECT_DIR$/vitamio" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

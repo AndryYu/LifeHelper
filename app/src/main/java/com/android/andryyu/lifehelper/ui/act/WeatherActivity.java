@@ -13,8 +13,8 @@ import com.android.andryyu.lifehelper.BaseApplication;
 import com.android.andryyu.lifehelper.R;
 import com.android.andryyu.lifehelper.base.BaseActivity;
 import com.android.andryyu.lifehelper.data.SPUtil;
-import com.android.andryyu.lifehelper.entity.Weather;
 import com.android.andryyu.lifehelper.di.components.DaggerWeatherComponent;
+import com.android.andryyu.lifehelper.entity.Weather;
 import com.android.andryyu.lifehelper.di.components.NetComponent;
 import com.android.andryyu.lifehelper.di.modules.WeatherModule;
 import com.android.andryyu.lifehelper.mvp.presenter.WeatherPresenter;
@@ -116,7 +116,7 @@ public class WeatherActivity extends BaseActivity implements WeatherContract.Vie
 
     @Override
     public void onCompleted() {
-        ToastUtil.showShort(getString(R.string.weather_complete));
+        //ToastUtil.showShort(getResources().getString(R.string.weather_complete));
     }
 
     @Override

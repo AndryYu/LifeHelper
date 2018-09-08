@@ -8,10 +8,11 @@
     <string name="password">密码</string>
     <string name="btn_login">登陆</string>
 
-    <string name="title_home">首页</string>
-    <string name="title_video">视频</string>
-    <string name="title_music">单读</string>
-    <string name="title_notifications">我的</string>
+    <string name="title_home">吃喝</string>
+    <string name="title_video">玩乐</string>
+    <string name="title_music">衣食</string>
+    <string name="title_notifications">住行</string>
+    <string name="title_mine">我的</string>
 
     <string name="fail_load_userInfo">加载用户信息失败： </string>
     <string name="fail_auth_user">初始化个人信息失败，请检查网络或者稍后重试。</string>
