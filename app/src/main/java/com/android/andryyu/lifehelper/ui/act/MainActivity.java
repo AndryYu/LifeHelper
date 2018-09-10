@@ -25,6 +25,7 @@ import com.android.andryyu.lifehelper.R;
 import com.android.andryyu.lifehelper.base.BaseActivity;
 import com.android.andryyu.lifehelper.base.BaseFragment;
 import com.android.andryyu.lifehelper.data.SPUtil;
+import com.android.andryyu.lifehelper.model.stay.StayFragment;
 import com.android.andryyu.lifehelper.ui.fragment.MineFragment;
 import com.android.andryyu.lifehelper.ui.fragment.VideoFragment;
 import com.android.andryyu.lifehelper.ui.fragment.dandu.DanduFragment;
@@ -32,6 +33,9 @@ import com.android.andryyu.lifehelper.ui.fragment.home.HomeFragment;
 import com.android.andryyu.lifehelper.utils.TextUtil;
 import com.android.andryyu.lifehelper.utils.ToastUtil;
 import com.tbruyelle.rxpermissions2.RxPermissions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -45,6 +49,7 @@ public class MainActivity extends BaseActivity implements AMapLocationListener {
     private HomeFragment homeFragment;
     private VideoFragment videoFragment;
     private DanduFragment danduFragment;
+    private StayFragment stayFragment;
     private MineFragment mineFragment;
 
     private Toolbar mToolbar;
@@ -53,6 +58,7 @@ public class MainActivity extends BaseActivity implements AMapLocationListener {
     private FragmentManager fragmentManager;
     private RxPermissions mRxPermissions;
     private TextView tvLocationCity;
+    private List<BaseFragment> mFrameList;
     //声明AMapLocationClient类对象
     public AMapLocationClient mLocationClient = null;
     //声明定位回调监听器
@@ -74,6 +80,9 @@ public class MainActivity extends BaseActivity implements AMapLocationListener {
                     selectFragment(danduFragment);
                     return true;
                 case R.id.navigation_notifications:
+                    selectFragment(stayFragment);
+                    return true;
+                case R.id.navigation_mine:
                     selectFragment(mineFragment);
                     return true;
             }
@@ -96,6 +105,7 @@ public class MainActivity extends BaseActivity implements AMapLocationListener {
         if (fragmentManager == null) {
             fragmentManager = getSupportFragmentManager();
         }
+        mFrameList = new ArrayList<>();
 
         initFragment();
         btmNv.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -109,23 +119,22 @@ public class MainActivity extends BaseActivity implements AMapLocationListener {
     private void initFragment() {
         //如果把FragmentTransaction作为全局变量，多次commit会报java.lang.IllegalStateException:commit already called
         FragmentTransaction ft = fragmentManager.beginTransaction();
-        if (homeFragment == null) {
-            homeFragment = HomeFragment.newInstance();
-            ft.add(R.id.fl_content, homeFragment);
+
+        homeFragment = HomeFragment.newInstance();
+        videoFragment = VideoFragment.newInstance();
+        danduFragment = DanduFragment.newInstance();
+        stayFragment = new StayFragment();
+        mineFragment = MineFragment.newInstance();
+        mFrameList.add(homeFragment);
+        mFrameList.add(danduFragment);
+        mFrameList.add(videoFragment);
+        mFrameList.add(stayFragment);
+        mFrameList.add(mineFragment);
+
+        for(BaseFragment fragment:mFrameList){
+            ft.add(R.id.fl_content, fragment);
+            ft.hide(fragment);
         }
-        if (videoFragment == null) {
-            videoFragment = VideoFragment.newInstance();
-            ft.add(R.id.fl_content, videoFragment);
-        }
-        if (danduFragment == null) {
-            danduFragment = DanduFragment.newInstance();
-            ft.add(R.id.fl_content, danduFragment);
-        }
-        if (mineFragment == null) {
-            mineFragment = MineFragment.newInstance();
-            ft.add(R.id.fl_content, mineFragment);
-        }
-        hideAllFragment(ft);
         ft.show(homeFragment).commit();
     }
 
@@ -144,21 +153,11 @@ public class MainActivity extends BaseActivity implements AMapLocationListener {
 
     /**
      * <p>hideAllFragment</p>
-     *
      * @Description 隐藏全部fragment
      */
     private void hideAllFragment(FragmentTransaction ft) {
-        if (homeFragment != null) {
-            ft.hide(homeFragment);
-        }
-        if (videoFragment != null) {
-            ft.hide(videoFragment);
-        }
-        if (danduFragment != null) {
-            ft.hide(danduFragment);
-        }
-        if (mineFragment != null) {
-            ft.hide(mineFragment);
+        for(BaseFragment fragment:mFrameList){
+            ft.hide(fragment);
         }
     }
 
@@ -199,9 +198,6 @@ public class MainActivity extends BaseActivity implements AMapLocationListener {
         if (toolbar != null) {
             mToolbar = toolbar;
             setSupportActionBar(mToolbar);
-            getSupportActionBar().setTitle("生活助手");
-            getSupportActionBar().setHomeButtonEnabled(true);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
     }
 
@@ -280,7 +276,6 @@ public class MainActivity extends BaseActivity implements AMapLocationListener {
             } else {
                 ToastUtil.showShort(getString(R.string.weather_errorLocation));
             }
-
             tvLocationCity.setText(SPUtil.getInstance().getCityName());
         }
     }
