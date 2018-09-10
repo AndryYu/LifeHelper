@@ -2,7 +2,7 @@ package com.android.andryyu.lifehelper.mvp.presenter;
 
 import com.android.andryyu.lifehelper.entity.item.NewsMultiItem;
 import com.android.andryyu.lifehelper.entity.news.NewsInfo;
-import com.android.andryyu.lifehelper.http.api.ApiService;
+import com.android.andryyu.lifehelper.common.http.api.ApiService;
 import com.android.andryyu.lifehelper.mvp.view.NewListContract;
 import com.android.andryyu.lifehelper.utils.ToastUtil;
 import com.android.andryyu.lifehelper.utils.UIUtils;
@@ -17,7 +17,6 @@ import io.reactivex.ObservableTransformer;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;

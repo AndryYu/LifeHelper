@@ -1,7 +1,7 @@
 package com.android.andryyu.lifehelper.mvp.presenter;
 
 import com.android.andryyu.lifehelper.entity.zhihu.Story;
-import com.android.andryyu.lifehelper.http.api.ApiService;
+import com.android.andryyu.lifehelper.common.http.api.ApiService;
 import com.android.andryyu.lifehelper.mvp.view.ZhiHuStoryContract;
 
 import javax.inject.Inject;

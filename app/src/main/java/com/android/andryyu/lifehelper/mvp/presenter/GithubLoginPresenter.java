@@ -4,8 +4,8 @@ import android.util.Log;
 
 import com.android.andryyu.lifehelper.BaseApplication;
 import com.android.andryyu.lifehelper.R;
-import com.android.andryyu.lifehelper.data.Constants;
-import com.android.andryyu.lifehelper.http.api.ApiService;
+import com.android.andryyu.lifehelper.common.data.Constants;
+import com.android.andryyu.lifehelper.common.http.api.ApiService;
 import com.android.andryyu.lifehelper.mvp.view.GithubLoginContract;
 import com.andryyu.helper.sub.github.Empty;
 import com.andryyu.helper.sub.github.GithubToken;

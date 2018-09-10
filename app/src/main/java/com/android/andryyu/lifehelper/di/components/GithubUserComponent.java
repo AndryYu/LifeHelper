@@ -2,7 +2,7 @@ package com.android.andryyu.lifehelper.di.components;
 
 import com.android.andryyu.lifehelper.di.UserScope;
 import com.android.andryyu.lifehelper.di.modules.GithubUserModule;
-import com.android.andryyu.lifehelper.ui.fragment.MineFragment;
+import com.android.andryyu.lifehelper.model.mine.MineFragment;
 
 import dagger.Component;
 

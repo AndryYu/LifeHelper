@@ -81,9 +81,9 @@ dependencies {
     // LabelView
     implementation 'com.flyco.labelview:FlycoLabelView_Lib:1.0.2@aar'
     implementation(name: 'ObservableScrollView-release', ext: 'aar')
-    implementation(name: 'AlivcPlayer-3.4.7', ext: 'aar')
+    implementation(name: 'AlivcPlayer-3.4.6', ext: 'aar')
     implementation(name: 'AlivcReporter-1.2', ext: 'aar')
-    implementation(name: 'AliyunVodPlayer-3.4.7', ext: 'aar')
+    implementation(name: 'AliyunVodPlayer-3.4.6', ext: 'aar')
     //leakcanary
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.1'
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'

@@ -1,10 +1,8 @@
 package com.android.andryyu.lifehelper.di.components;
 
 import com.android.andryyu.lifehelper.di.UserScope;
-import com.android.andryyu.lifehelper.di.modules.GithubLoginModule;
 import com.android.andryyu.lifehelper.di.modules.MovieListModule;
-import com.android.andryyu.lifehelper.ui.act.LoginActivity;
-import com.android.andryyu.lifehelper.ui.fragment.home.MovieFragment;
+import com.android.andryyu.lifehelper.model.ditowine.MovieFragment;
 
 import dagger.Component;
 

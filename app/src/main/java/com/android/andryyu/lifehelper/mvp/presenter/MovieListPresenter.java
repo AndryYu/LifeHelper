@@ -1,9 +1,8 @@
 package com.android.andryyu.lifehelper.mvp.presenter;
 
 import com.android.andryyu.lifehelper.entity.douban.HotMovieBean;
-import com.android.andryyu.lifehelper.http.api.ApiService;
+import com.android.andryyu.lifehelper.common.http.api.ApiService;
 import com.android.andryyu.lifehelper.mvp.view.MovieListContract;
-import com.android.andryyu.lifehelper.mvp.view.NewListContract;
 
 import javax.inject.Inject;
 

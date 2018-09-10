@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
-    tools:context="com.android.andryyu.lifehelper.ui.fragment.dandu.DanduFragment">
+    tools:context="com.android.andryyu.lifehelper.model.foodcloth.FoodClothFragment">
 
     <com.android.andryyu.lifehelper.widget.VerticalViewPager
         android:id="@+id/vp_dandu"

@@ -40,7 +40,7 @@
             android:value="66270ff5616ddf89edf4c88e7c13871f" />
 
         <activity
-            android:name=".ui.SplashActivity"
+            android:name=".SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -49,25 +49,22 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.act.MainActivity"
+            android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.act.WeatherActivity"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".ui.act.ShowVideoActivity"
+            android:name=".model.havefun.ShowVideoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="sensorLandscape"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.act.VideoDetailActivity"
+            android:name=".model.havefun.VideoDetailActivity"
             android:theme="@style/AppTheme" />
         <activity android:name=".ui.act.ZhiHuStoryActivity" />
         <activity
             android:name=".ui.act.ArtDetailActivity" />
 
         <service
-            android:name=".data.account.AccountService"
+            android:name=".common.data.account.AccountService"
             android:enabled="true"
             android:exported="true">
             <intent-filter>

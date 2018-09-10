@@ -3,9 +3,9 @@ package com.android.andryyu.lifehelper.mvp.presenter;
 import com.android.andryyu.lifehelper.entity.zhihu.BaseEntity;
 import com.android.andryyu.lifehelper.entity.zhihu.Daily;
 import com.android.andryyu.lifehelper.entity.zhihu.StorySection;
-import com.android.andryyu.lifehelper.http.api.ApiService;
+import com.android.andryyu.lifehelper.common.http.api.ApiService;
 import com.android.andryyu.lifehelper.mvp.view.ZhiHuContract;
-import com.android.andryyu.lifehelper.rx.RxUtils;
+import com.android.andryyu.lifehelper.common.rx.RxUtils;
 
 import java.util.ArrayList;
 import java.util.List;

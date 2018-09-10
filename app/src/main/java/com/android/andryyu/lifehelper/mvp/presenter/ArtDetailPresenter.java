@@ -2,7 +2,7 @@ package com.android.andryyu.lifehelper.mvp.presenter;
 
 import com.android.andryyu.lifehelper.entity.dandu.DetailEntity;
 import com.android.andryyu.lifehelper.entity.dandu.Result;
-import com.android.andryyu.lifehelper.http.api.ApiService;
+import com.android.andryyu.lifehelper.common.http.api.ApiService;
 import com.android.andryyu.lifehelper.mvp.view.ArtDetailContract;
 
 import javax.inject.Inject;;import io.reactivex.Observer;

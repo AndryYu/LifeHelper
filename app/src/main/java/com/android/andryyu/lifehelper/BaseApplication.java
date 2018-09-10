@@ -4,7 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.support.v7.app.AppCompatDelegate;
 
-import com.android.andryyu.lifehelper.data.SPUtil;
+import com.alivc.player.AliVcMediaPlayer;
+import com.android.andryyu.lifehelper.common.data.SPUtil;
 import com.android.andryyu.lifehelper.di.components.DaggerNetComponent;
 import com.android.andryyu.lifehelper.di.components.NetComponent;
 import com.android.andryyu.lifehelper.di.modules.NetModule;
@@ -40,6 +41,8 @@ public class BaseApplication extends Application {
 
         initNet();
         AppCrashHandler.getInstance().setCrashHandler(this);
+        //初始化播放器（只需调用一次即可，建议在application中初始化）
+        AliVcMediaPlayer.init(getApplicationContext());
         initAppNightMode();
         if (LeakCanary.isInAnalyzerProcess(this)) {
             // This process is dedicated to LeakCanary for heap analysis.You should not init your app in this process.

@@ -2,7 +2,7 @@ package com.android.andryyu.lifehelper.di.components;
 
 import com.android.andryyu.lifehelper.di.UserScope;
 import com.android.andryyu.lifehelper.di.modules.NewListModule;
-import com.android.andryyu.lifehelper.ui.fragment.home.ToutiaoFragment;
+import com.android.andryyu.lifehelper.model.ditowine.ToutiaoFragment;
 
 import dagger.Component;
 

@@ -2,7 +2,7 @@ package com.android.andryyu.lifehelper.di.components;
 
 
 import com.android.andryyu.lifehelper.di.modules.NetModule;
-import com.android.andryyu.lifehelper.http.api.ApiService;
+import com.android.andryyu.lifehelper.common.http.api.ApiService;
 
 import javax.inject.Singleton;
 

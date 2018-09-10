@@ -2,7 +2,7 @@ package com.android.andryyu.lifehelper.di.modules;
 
 import com.android.andryyu.lifehelper.BaseApplication;
 import com.android.andryyu.lifehelper.BuildConfig;
-import com.android.andryyu.lifehelper.http.api.ApiService;
+import com.android.andryyu.lifehelper.common.http.api.ApiService;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,14 +1,13 @@
 package com.android.andryyu.lifehelper.mvp.presenter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 
 import com.android.andryyu.lifehelper.BaseApplication;
 import com.android.andryyu.lifehelper.R;
-import com.android.andryyu.lifehelper.data.RetrofitUtil;
-import com.android.andryyu.lifehelper.data.account.GitHubAccount;
-import com.android.andryyu.lifehelper.http.api.ApiService;
+import com.android.andryyu.lifehelper.common.data.RetrofitUtil;
+import com.android.andryyu.lifehelper.common.data.account.GitHubAccount;
+import com.android.andryyu.lifehelper.common.http.api.ApiService;
 import com.android.andryyu.lifehelper.mvp.view.GithubUserContract;
 import com.andryyu.helper.sub.github.User;
 
