@@ -2,7 +2,7 @@ package com.android.andryyu.lifehelper.di.components;
 
 import com.android.andryyu.lifehelper.di.UserScope;
 import com.android.andryyu.lifehelper.di.modules.ZhiHuStoryModule;
-import com.android.andryyu.lifehelper.ui.act.ZhiHuStoryActivity;
+import com.android.andryyu.lifehelper.model.ditowine.ui.ZhiHuStoryActivity;
 
 import dagger.Component;
 

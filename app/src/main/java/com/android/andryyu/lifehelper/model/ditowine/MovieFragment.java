@@ -15,8 +15,8 @@ import com.android.andryyu.lifehelper.di.components.DaggerMovieListComponent;
 import com.android.andryyu.lifehelper.di.components.NetComponent;
 import com.android.andryyu.lifehelper.di.modules.MovieListModule;
 import com.android.andryyu.lifehelper.entity.douban.HotMovieBean;
-import com.android.andryyu.lifehelper.mvp.presenter.MovieListPresenter;
-import com.android.andryyu.lifehelper.mvp.view.MovieListContract;
+import com.android.andryyu.lifehelper.model.ditowine.mvp.MovieListPresenter;
+import com.android.andryyu.lifehelper.model.ditowine.mvp.contract.MovieListContract;
 import com.android.andryyu.lifehelper.model.ditowine.adapter.MovieLatestAdapter;
 import com.android.andryyu.lifehelper.widget.recycleView.XRecyclerView;
 

@@ -12,7 +12,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 
 import com.android.andryyu.lifehelper.BaseApplication;
-import com.android.andryyu.lifehelper.ui.act.LoginActivity;
+import com.android.andryyu.lifehelper.model.mine.ui.LoginActivity;
 import com.andryyu.helper.sub.github.AuthError;
 import com.andryyu.helper.sub.github.Github;
 import com.andryyu.helper.sub.github.GithubError;

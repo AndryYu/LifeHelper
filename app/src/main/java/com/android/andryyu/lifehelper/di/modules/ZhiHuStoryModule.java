@@ -1,6 +1,6 @@
 package com.android.andryyu.lifehelper.di.modules;
 
-import com.android.andryyu.lifehelper.mvp.view.ZhiHuStoryContract;
+import com.android.andryyu.lifehelper.model.ditowine.mvp.contract.ZhiHuStoryContract;
 
 import dagger.Module;
 import dagger.Provides;

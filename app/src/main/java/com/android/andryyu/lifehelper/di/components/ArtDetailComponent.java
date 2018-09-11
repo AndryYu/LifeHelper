@@ -2,7 +2,7 @@ package com.android.andryyu.lifehelper.di.components;
 
 import com.android.andryyu.lifehelper.di.UserScope;
 import com.android.andryyu.lifehelper.di.modules.ArtDetailModule;
-import com.android.andryyu.lifehelper.ui.act.ArtDetailActivity;
+import com.android.andryyu.lifehelper.model.foodcloth.ui.ArtDetailActivity;
 
 import dagger.Component;
 

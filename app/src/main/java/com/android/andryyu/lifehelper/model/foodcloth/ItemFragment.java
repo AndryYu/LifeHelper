@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.android.andryyu.lifehelper.R;
 import com.android.andryyu.lifehelper.base.BaseFragment;
 import com.android.andryyu.lifehelper.entity.dandu.Item;
-import com.android.andryyu.lifehelper.ui.act.ArtDetailActivity;
+import com.android.andryyu.lifehelper.model.foodcloth.ui.ArtDetailActivity;
 import com.bumptech.glide.Glide;
 
 import butterknife.BindView;

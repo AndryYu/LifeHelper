@@ -16,7 +16,7 @@ import com.android.andryyu.lifehelper.di.modules.NewListModule;
 import com.android.andryyu.lifehelper.entity.item.NewsMultiItem;
 import com.android.andryyu.lifehelper.entity.news.NewsInfo;
 import com.android.andryyu.lifehelper.model.ditowine.adapter.NewsMultiListAdapter;
-import com.android.andryyu.lifehelper.mvp.view.NewListContract;
+import com.android.andryyu.lifehelper.model.ditowine.mvp.contract.NewListContract;
 import com.android.andryyu.lifehelper.widget.recycleView.XRecyclerView;
 import com.dl7.recycler.adapter.BaseQuickAdapter;
 import com.trello.rxlifecycle2.LifecycleTransformer;

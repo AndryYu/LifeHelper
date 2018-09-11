@@ -1,6 +1,6 @@
 package com.android.andryyu.lifehelper.di.modules;
 
-import com.android.andryyu.lifehelper.mvp.view.OpenEyesContract;
+import com.android.andryyu.lifehelper.model.havefun.mvp.contract.OpenEyesContract;
 
 import dagger.Module;
 import dagger.Provides;

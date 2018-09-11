@@ -1,6 +1,6 @@
 package com.android.andryyu.lifehelper.di.modules;
 
-import com.android.andryyu.lifehelper.mvp.view.OwnspaceContract;
+import com.android.andryyu.lifehelper.model.foodcloth.mvp.contract.OwnspaceContract;
 
 import dagger.Module;
 import dagger.Provides;

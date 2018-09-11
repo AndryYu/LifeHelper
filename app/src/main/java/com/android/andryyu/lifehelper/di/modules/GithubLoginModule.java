@@ -1,6 +1,6 @@
 package com.android.andryyu.lifehelper.di.modules;
 
-import com.android.andryyu.lifehelper.mvp.view.GithubLoginContract;
+import com.android.andryyu.lifehelper.model.mine.mvp.contract.GithubLoginContract;
 
 import dagger.Module;
 import dagger.Provides;

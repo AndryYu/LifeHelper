@@ -59,9 +59,9 @@
         <activity
             android:name=".model.havefun.VideoDetailActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".ui.act.ZhiHuStoryActivity" />
+        <activity android:name=".model.ditowine.ui.ZhiHuStoryActivity" />
         <activity
-            android:name=".ui.act.ArtDetailActivity" />
+            android:name=".model.foodcloth.ui.ArtDetailActivity" />
 
         <service
             android:name=".common.data.account.AccountService"
@@ -76,9 +76,8 @@
                 android:resource="@xml/authenticator" />
         </service>
 
-        <activity android:name=".ui.act.LoginActivity" />
-        <activity android:name=".ui.act.MovieDetailActivity" />
-        <activity android:name=".ui.act.NewDetailActivity"/>
+        <activity android:name=".model.mine.ui.LoginActivity" />
+        <activity android:name=".model.ditowine.ui.NewDetailActivity"/>
 
         <meta-data
             android:name="UMENG_APPKEY"

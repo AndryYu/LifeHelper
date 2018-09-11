@@ -2,7 +2,7 @@ package com.android.andryyu.lifehelper.di.modules;
 
 import android.content.Context;
 
-import com.android.andryyu.lifehelper.mvp.view.GithubUserContract;
+import com.android.andryyu.lifehelper.model.mine.mvp.contract.GithubUserContract;
 
 import dagger.Module;
 import dagger.Provides;

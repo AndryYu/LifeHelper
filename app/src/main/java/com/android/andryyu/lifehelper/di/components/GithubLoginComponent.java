@@ -2,7 +2,7 @@ package com.android.andryyu.lifehelper.di.components;
 
 import com.android.andryyu.lifehelper.di.UserScope;
 import com.android.andryyu.lifehelper.di.modules.GithubLoginModule;
-import com.android.andryyu.lifehelper.ui.act.LoginActivity;
+import com.android.andryyu.lifehelper.model.mine.ui.LoginActivity;
 
 import dagger.Component;
 
