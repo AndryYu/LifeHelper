@@ -8,12 +8,12 @@
 
 
 ## Preview
-<img width="173" height="274"  src="/screen_shot/screen_shot01.png"></img>
-<img width="173" height="274"  src="/screen_shot/screen_shot02.png"></img>
-<img width="173" height="274"  src="/screen_shot/screen_shot03.png"></img>
-<img width="173" height="274"  src="/screen_shot/screen_shot04.png"></img>
-<img width="173" height="274"  src="/screen_shot/screen_shot05.png"></img>
-<img width="173" height="274"  src="/screen_shot/screen_shot06.png"></img>
+<img width="173" height="274"  src="/screen_shot/screen_shot01.jpg"></img>
+<img width="173" height="274"  src="/screen_shot/screen_shot02.jpg"></img>
+<img width="173" height="274"  src="/screen_shot/screen_shot03.jpg"></img>
+<img width="173" height="274"  src="/screen_shot/screen_shot04.jpg"></img>
+<img width="173" height="274"  src="/screen_shot/screen_shot05.jpg"></img>
+<img width="173" height="274"  src="/screen_shot/screen_shot06.jpg"></img>
 
 ## Specs / Open-source libraries:
 - **MVP+Dagger2**-architecture: [**googlesamples**](https://github.com/googlesamples/android-architecture/tree/todo-mvp-dagger/) is used to quick to understand mvp+dagger2 architecture.
