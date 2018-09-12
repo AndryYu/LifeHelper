@@ -10,6 +10,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/RecyclerViewHelper" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/baseutils" />
             <option value="$PROJECT_DIR$/iconlibrary" />
             <option value="$PROJECT_DIR$/sublibrary" />
           </set>

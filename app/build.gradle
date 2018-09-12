@@ -51,7 +51,7 @@ repositories {
 
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:28.0.0-rc01'
     implementation 'com.android.support:design:28.0.0-rc01'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
@@ -74,8 +74,9 @@ dependencies {
     //ConverterFactory的String依赖包
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.4.1'
-    //glide
-    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    // Glide 4.2.0 introduced lag/white on long images and white flash in transition for us.
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.1.1'
+    implementation 'com.github.bumptech.glide:glide:4.1.1'
     implementation 'org.jsoup:jsoup:1.7.3'
     //implementation 'com.daimajia.slider:library:1.1.5'
     // LabelView
@@ -92,5 +93,6 @@ dependencies {
     implementation project(':sublibrary')
     implementation project(':iconlibrary')
     implementation project(':RecyclerViewHelper')
+    implementation project(':baseutils')
 }
 
